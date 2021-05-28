@@ -17,5 +17,25 @@ namespace FinalProject.Server.Repositories
       string sql = "SELECT * FROM accounts WHERE id =@id";
       return _db.QueryFirstOrDefault<Profile>(sql, new { id });
     }
+
+    internal string GetByEmail(string email)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Profile Create(Profile userInfo)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Profile GetById(Profile userInfo)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Profile Edit(Profile original)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

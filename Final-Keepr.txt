@@ -8,6 +8,7 @@ TODO
 COMPLETED
 --------------------------------------------------------------------------------------------------------
 HALF-COMPLETED
+-Users can Register, login and automatically authenticated on refresh
 --------------------------------------------------------------------------------------------------------
 NOT COMPLETED
 --------------------------------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ NOT COMPLETED
 -On the vault page, if the vault is private and not the active users the request fails
 -From the vault page if the user is the creator they can remove keeps from the vault
 -Anytime a keep is kept in a vault the keep count is incremented
--Users can Register, login and automatically authenticated on refresh
+
 -Create and Delete Keeps
 -Create and Delete Vaults
 -Users can only Delete things they created

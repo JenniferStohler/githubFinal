@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "Keepr-client",
+      "path": "../FinalProject-Client"
+    },
+    {
+      "name": "Keepr-server",
+      "path": "../FinalProject.Server"
+    }
+  ]
+}

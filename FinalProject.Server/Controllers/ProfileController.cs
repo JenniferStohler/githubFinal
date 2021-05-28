@@ -1,6 +1,7 @@
 using System;
 using FinalProject.Server.Models;
 using FinalProject.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Server.Controllers
@@ -16,6 +17,7 @@ namespace FinalProject.Server.Controllers
       _profileService = profileService;
     }
     [HttpGet("{id}")]
+    // [Authorize]
     public ActionResult<Profile> GetProfile(string id)
     {
       try
@@ -27,6 +29,7 @@ namespace FinalProject.Server.Controllers
       {
         return BadRequest(e.Message);
       }
+
     }
   }
 }

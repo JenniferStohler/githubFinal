@@ -13,6 +13,11 @@ public class ProfileService
   {
     return _repo.GetById(id);
   }
+  //   internal string GetProfileEmailById(string id)
+  //   {
+  //     return _repo.GetById.Email;
+
+  //   }
 
 }
 

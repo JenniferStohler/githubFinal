@@ -38,7 +38,7 @@ FOREIGN KEY(vaultId) REFERENCES vaults(id) ON DELETE CASCADE
 CREATE TABLE IF NOT EXISTS vaultkeeps(
   id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key';
   CreatorId VARCHAR(255) NOT NULL COMMENT 'FK: Account';
-  name VARCHAR(255) COMMENT 'Name of VaultKeep';
-  description VARCHAR(255) COMMENT 'Description';
-  
+   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE
+  FOREIGN KEY (keepsId) REFERENCES keeps(id) ON DELETE CASCADE
 )

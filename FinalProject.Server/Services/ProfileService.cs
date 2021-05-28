@@ -1,7 +1,10 @@
-namespace FinalProject.Server.Services
+using System;
+using FinalProject.Server.Models;
+
+public class ProfileService
 {
-    public class AccountService
-    {
-        
-    }
+  internal Profile GetProfileById(string id)
+  {
+    throw new NotImplementedException();
+  }
 }

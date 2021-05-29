@@ -36,11 +36,11 @@ namespace FinalProject.Server.Controllers
     }
     [Authorize]
     [HttpPut("{id}")]
-    public async Task<ActionResult<Vault>> Update(int id, [FromBody] Vault k)
+    public async Task<ActionResult<Keep>> Update(int id, [FromBody] Keep k)
     {
       Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
       k.Id = id;
-      Vault newK = _ks.Update(k, userInfo.Id);
+      Keep newK = _ks.Update(k, userInfo.Id);
       newK.Creator = userInfo;
       return Ok(newK);
     }

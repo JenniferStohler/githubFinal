@@ -21,7 +21,7 @@ namespace FinalProject.Server.Repositories
       throw new NotImplementedException();
     }
 
-    internal Keep Update(Vault k)
+    internal Keep Update(Keep k)
     {
       throw new NotImplementedException();
     }

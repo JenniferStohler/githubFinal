@@ -13,9 +13,9 @@ namespace FinalProject.Server.Controllers
   public class AccountController : ControllerBase
   {
     private readonly AccountService _accountService;
-    public AccountController(AccountService aService)
+    public AccountController(AccountService accountService)
     {
-      _aService = aService;
+      _accountService = accountService;
     }
     [HttpGet]
     [Authorize]
@@ -24,7 +24,7 @@ namespace FinalProject.Server.Controllers
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        return Ok(_aService.GetOrCreateProfile(userInfo));
+        return Ok(_accountService.GetOrCreateProfile(userInfo));
       }
       catch (Exception e)
       {

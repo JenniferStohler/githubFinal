@@ -24,14 +24,27 @@ namespace FinalProject.Server.Repositories
       return _db.QueryFirstOrDefault<Account>(sql, new { id });
     }
 
-    internal Account Create(Account userInfo)
+    internal Account Create(Account newAccount)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      INSERT INTO accounts
+        (name, picture, email, id)
+        VALUES
+        (@Name, @Picture, @Email, @Id)";
+      _db.Execute(sql, newAccount);
+      return newAccount;
     }
 
-    internal Account Edit(Account original)
+    internal Account Edit(Account update)
     {
-      throw new NotImplementedException();
+      string sql = @"
+        UPDATE accounts
+        SET
+        name = @NAme,
+        picture= @Picture,
+        WHERE id = @Id;";
+      _db.Execute(sql, update);
+      return update;
     }
 
     // internal string GetByEmail(string email)

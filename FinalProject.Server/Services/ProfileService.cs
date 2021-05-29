@@ -13,11 +13,11 @@ public class ProfileService
   {
     return _repo.GetById(id);
   }
-  internal string GetVaultsById(string id)
-  {
-    return _repo.GetById(vaultId);
+  // internal string GetVaultById(string id)
+  // {
+  //   return _repo.GetById(vaultId);
 
-  }
+  // }
   internal string GetKeepsById(string keeps)
   {
     return _repo.GetByKeeps(keeps);

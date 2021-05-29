@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Server.Controllers
 {
   [ApiController]
-  [Route("api/[controller")]
+  [Route("api/[controller]")]
   public class KeepController : ControllerBase
   {
     private readonly KeepService _ks;

@@ -30,7 +30,7 @@ public class VaultService
 
   internal Vault Create(Vault v)
   {
-    return _vp.Create();
+    return _vp.Create(v);
   }
 
   internal Vault Update(Vault v, string id)

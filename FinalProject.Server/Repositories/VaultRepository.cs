@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using FinalProject.Server.Models;
 
@@ -13,6 +14,43 @@ namespace FinalProject.Server.Repositories
     {
       _db = db;
     }
+
+
+
+    internal Vault GetById(int id)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      a.*
+      FROM vaults v
+      JOIN accounts a ON a.id = v.creatorId
+      WHERE v.id = @id";
+      return _db.Query<Vault, Account, Vault>(sql, (v, a) =>
+      {
+        v.Creator = a;
+        return v;
+      }, new { id }).FirstOrDefault();
+    }
+
+    // internal Vault Update(Vault vault, Vault v1, string v2, string id)
+    // {
+    //   throw new NotImplementedException();
+    // }
+
+    internal Vault Update(Vault v)
+    {
+      string sql = @"
+            UPDATE vaults 
+            SET 
+                name = @Name,
+                description = @Description,
+            WHERE id = @Id;
+            ";
+      _db.Execute(sql, v);
+      return v;
+    }
+
     internal Vault Create(Vault v)
     {
       string sql = @"
@@ -25,42 +63,30 @@ namespace FinalProject.Server.Repositories
         SELECT LAST_INSERT_ID();";
 
       v.Id = _db.ExecuteScalar<int>(sql, v);
-      return v;
+      return v; ;
     }
 
-    internal Vault Create()
-    {
-      throw new NotImplementedException();
-    }
-
-    internal Vault GetById(int id)
-    {
-      throw new NotImplementedException();
-    }
-
-    // internal Vault Update(Vault vault, Vault v1, string v2, string id)
-    // {
-    //   throw new NotImplementedException();
-    // }
-
-    internal Vault Update(Vault v)
-    {
-      throw new NotImplementedException();
-    }
-
-    internal object GetById()
-    {
-      throw new NotImplementedException();
-    }
 
     internal List<Vault> GetAll()
     {
-      throw new NotImplementedException();
+      string sql = @"
+            SELECT 
+            v.*,
+            a.* 
+            FROM vaults v
+            JOIN accounts a ON v.creatorId = a.id;";
+      return _db.Query<Vault, Profile, Vault>(sql,
+      (v, a) =>
+      {
+        v.Creator = a;
+        return v;
+      }, splitOn: "id").ToList();
     }
 
     internal void Delete(int id)
     {
-      throw new NotImplementedException();
+      string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
+      _db.Execute(sql, new { id });
     }
   }
 }

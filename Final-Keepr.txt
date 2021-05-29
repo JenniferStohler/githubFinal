@@ -6,9 +6,11 @@ TODO
 -All Invalid Auth API Tests pass
 --------------------------------------------------------------------------------------------------------
 COMPLETED
+-All deletes require confirmation
 --------------------------------------------------------------------------------------------------------
 HALF-COMPLETED
 -Users can Register, login and automatically authenticated on refresh
+-Create and Delete Vaults
 --------------------------------------------------------------------------------------------------------
 NOT COMPLETED
 --------------------------------------------------------------------------------------------------------
@@ -24,9 +26,9 @@ NOT COMPLETED
 -Anytime a keep is kept in a vault the keep count is incremented
 
 -Create and Delete Keeps
--Create and Delete Vaults
+
 -Users can only Delete things they created
--All deletes require confirmation
+
 -Add keeps to vaults
 -Remove keeps from vaults
 -UI adheres to all phases of CodeWorks Design Requirements

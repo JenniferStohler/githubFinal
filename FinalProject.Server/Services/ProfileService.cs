@@ -13,15 +13,15 @@ public class ProfileService
   {
     return _repo.GetById(id);
   }
-  //   internal string GetProfileEmailById(string id)
-  //   {
-  //     return _repo.GetById(id).Email;
+  internal string GetVaultsById(string id)
+  {
+    return _repo.GetById(id)
 
-  //   }
-  //   internal string GetProfileByEmail(string email)
-  //   {
-  //     return _repo.GetByEmail(email);
-  //   }
+  }
+  internal string GetKeepsById(string keeps)
+  {
+    return _repo.GetByKeeps(keeps);
+  }
   //   internal Profile GetOrCreateProfile(Profile userInfo)
   //   {
   //     Profile profile = _repo.GetById(userInfo);

@@ -11,5 +11,14 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
+    internal Profile GetVaultsById(string id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal string GetByKeeps(string keeps)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

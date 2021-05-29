@@ -1,7 +1,10 @@
-namespace FinalProject.Server.Services
+using System;
+using System.Collections.Generic;
+using FinalProject.Server.Models;
+public class VaultService
 {
-    public class VaultService
-    {
-        
-    }
+  internal List<Vault> GetAll()
+  {
+    throw new NotImplementedException();
+  }
 }

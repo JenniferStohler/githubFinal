@@ -10,11 +10,11 @@ namespace FinalProject.Server.Controllers
   [Route("api/[controller]")]
   public class ProfileController : ControllerBase
   {
-    private readonly ProfileService _profileService;
+    private readonly AccountService _accountService;
 
-    public ProfileController(ProfileService profileService)
+    public ProfileController(AccountService accountService)
     {
-      _profileService = profileService;
+      _accountService = accountService;
     }
     [HttpGet("{id}")]
     // [Authorize]
@@ -22,8 +22,8 @@ namespace FinalProject.Server.Controllers
     {
       try
       {
-        Profile p = _profileService.GetProfileById(id);
-        return Ok(p);
+        Profile a = _accountService.GetProfileById(id);
+        return Ok(a);
       }
       catch (Exception e)
       {

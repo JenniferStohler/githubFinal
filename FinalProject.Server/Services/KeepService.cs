@@ -17,21 +17,23 @@ namespace FinalProject.Server.Services
       return _kp.Create();
     }
 
-    internal Vault Update(Vault k, string id)
+    internal Keep Update(Keep k, string id)
     {
-      Vault keep = _kp.GetById(k.Id);
+
+      Keep keep = _kp.GetById(k.Id);
+
+      if (keep == null)
       {
-        if (keep == null)
-        {
-          throw new Exception("Invalid Id");
-        }
-        if (keep.CreatorId != id)
-        {
-          throw new Exception("You do not have permission to edit this");
-        }
-        return _kp.Update(k);
+        throw new Exception("Invalid Id");
       }
+      if (keep.CreatorId != id)
+      {
+        throw new Exception("You do not have permission to edit this");
+      }
+
+      return _kp.Update(k);
     }
+
     internal Keep Get(int id)
     {
       var k = _kp.GetById(id);

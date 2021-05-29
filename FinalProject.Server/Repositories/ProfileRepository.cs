@@ -20,5 +20,10 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
+
+    internal string GetById(object vaultId)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

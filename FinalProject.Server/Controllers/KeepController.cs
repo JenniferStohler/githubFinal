@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using FinalProject.Server.Models;
@@ -28,11 +29,37 @@ namespace FinalProject.Server.Controllers
         newK.Creator = userInfo;
         return Ok(newK);
       }
-      catch (System.Exception)
+      catch (Exception e)
       {
-
-        throw;
+        return BadRequest(e.Message);
       }
     }
+    [Authorize]
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Vault>> Update(int id, [FromBody] Vault k)
+    {
+      Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+      k.Id = id;
+      Vault newK = _ks.Update(k, userInfo.Id);
+      newK.Creator = userInfo;
+      return Ok(newK);
+    }
+
+    [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        _ks.Delete(id, userInfo);
+        return Ok("Deleted");
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
   }
 }

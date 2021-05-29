@@ -16,5 +16,15 @@ namespace FinalProject.Server.Services
     {
       throw new NotImplementedException();
     }
+
+    internal Vault Update(Vault k, string id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void Delete(int id, Account userInfo)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

@@ -10,5 +10,25 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
+
+    internal Keep Create()
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Keep GetById(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Vault Update(Vault k)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void Delete(int id)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

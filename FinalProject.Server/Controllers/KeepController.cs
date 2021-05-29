@@ -52,7 +52,7 @@ namespace FinalProject.Server.Controllers
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        _ks.Delete(id, userInfo);
+        _ks.Delete(id, userInfo.Id);
         return Ok("Deleted");
       }
       catch (Exception e)

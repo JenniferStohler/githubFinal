@@ -14,17 +14,44 @@ namespace FinalProject.Server.Services
 
     internal Keep Create(Keep k)
     {
-      throw new NotImplementedException();
+      return _kp.Create();
     }
 
     internal Vault Update(Vault k, string id)
     {
-      throw new NotImplementedException();
+      Vault keep = _kp.GetById(k.Id);
+      {
+        if (keep == null)
+        {
+          throw new Exception("Invalid Id");
+        }
+        if (keep.CreatorId != id)
+        {
+          throw new Exception("You do not have permission to edit this");
+        }
+        return _kp.Update(k);
+      }
+    }
+    internal Keep Get(int id)
+    {
+      var k = _kp.GetById(id);
+      if (k == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      return k;
     }
 
-    internal void Delete(int id, Account userInfo)
+    internal void Delete(int id, string userId)
     {
-      throw new NotImplementedException();
+      Keep keep = Get(id);
+      if (keep.CreatorId != userId)
+      {
+        throw new Exception("You do not have permission to delete this");
+      }
+      _kp.Delete(id);
     }
+
+
   }
 }

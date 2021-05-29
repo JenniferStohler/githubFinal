@@ -1,7 +1,8 @@
 namespace FinalProject.Server.Controllers
 {
-    public class VaultkeepController
-    {
-        
-    }
+  public class VaultkeepController
+  {
+    // [HttpGet("{id}/keeps")]
+    // [HttpGet("{id}/vaults")]
+  }
 }

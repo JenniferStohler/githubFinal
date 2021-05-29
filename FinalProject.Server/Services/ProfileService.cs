@@ -15,7 +15,7 @@ public class ProfileService
   }
   internal string GetVaultsById(string id)
   {
-    return _repo.GetById(vaultId)
+    return _repo.GetById(vaultId);
 
   }
   internal string GetKeepsById(string keeps)

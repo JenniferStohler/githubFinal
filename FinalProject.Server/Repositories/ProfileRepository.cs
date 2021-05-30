@@ -25,5 +25,10 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
+
+    internal Profile Create(Profile userInfo)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

@@ -58,9 +58,9 @@ public class VaultService
     }
     _vp.Remove(id);
   }
-  internal List<Keep> GetKeeps(int vaultId)
+  internal List<Keep> GetKeepsByVaultId(int vaultId)
   {
-    return _kp.GetKeeps(vaultId);
+    return _kp.GetKeepsByVaultId(vaultId);
   }
 }
 //Get ProfilesVaults

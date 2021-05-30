@@ -39,7 +39,10 @@ namespace FinalProject.Server.Controllers
     }
     [Authorize]
     [HttpGet("{id}")]
-    public ActionResult<List<Vaultkeep>> GetAll();
+    public ActionResult<List<Vaultkeep>> GetAll()
+    {
+
+    }
 
 
   }

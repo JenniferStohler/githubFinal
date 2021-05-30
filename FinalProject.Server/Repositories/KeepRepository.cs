@@ -40,7 +40,9 @@ namespace FinalProject.Server.Repositories
 
     internal Keep GetById(int id)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      SELECT FROM keeps WHERE id = @Id";
+      return _dbQuery.FirstOrDefault<Keep>(sql, new { Id = id });
     }
 
     internal Keep Update(Keep k)

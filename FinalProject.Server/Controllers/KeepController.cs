@@ -47,12 +47,12 @@ namespace FinalProject.Server.Controllers
 
     [Authorize]
     [HttpDelete("{id}")]
-    public async Task<ActionResult<string>> Delete(int id)
+    public async Task<ActionResult<string>> Remove(int id)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        _ks.Delete(id, userInfo.Id);
+        _ks.Remove(id, userInfo.Id);
         return Ok("Deleted");
       }
       catch (Exception e)

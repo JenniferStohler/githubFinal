@@ -26,7 +26,7 @@ namespace FinalProject.Server.Repositories
       throw new NotImplementedException();
     }
 
-    internal void Delete(int id)
+    internal void Remove(int id)
     {
       throw new NotImplementedException();
     }

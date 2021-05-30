@@ -95,12 +95,12 @@ namespace FinalProject.Server.Controllers
     }
     [Authorize]
     [HttpDelete("{id}")]
-    public async Task<ActionResult<string>> Delete(int id)
+    public async Task<ActionResult<string>> Remove(int id)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        _vs.Delete(id, userInfo.Id);
+        _vs.Remove(id, userInfo.Id);
         return Ok("Deleted");
       }
       catch (Exception e)

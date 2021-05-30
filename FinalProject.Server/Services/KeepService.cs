@@ -44,14 +44,14 @@ namespace FinalProject.Server.Services
       return k;
     }
 
-    internal void Delete(int id, string userId)
+    internal void Remove(int id, string userId)
     {
       Keep keep = Get(id);
       if (keep.CreatorId != userId)
       {
         throw new Exception("You do not have permission to delete this");
       }
-      _kp.Delete(id);
+      _kp.Remove(id);
     }
 
     //Get Profiles Keeps

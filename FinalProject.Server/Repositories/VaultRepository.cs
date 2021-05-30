@@ -83,7 +83,7 @@ namespace FinalProject.Server.Repositories
       }, splitOn: "id").ToList();
     }
 
-    internal void Delete(int id)
+    internal void Remove(int id)
     {
       string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
       _db.Execute(sql, new { id });

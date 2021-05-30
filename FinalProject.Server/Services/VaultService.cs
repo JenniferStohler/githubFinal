@@ -49,14 +49,14 @@ public class VaultService
     }
   }
 
-  internal void Delete(int id, string userId)
+  internal void Remove(int id, string userId)
   {
     Vault vault = Get(id);
     if (vault.CreatorId != userId)
     {
       throw new Exception("You do not have permission to delete this");
     }
-    _vp.Delete(id);
+    _vp.Remove(id);
   }
   internal List<Keep> GetKeeps(int vaultId)
   {

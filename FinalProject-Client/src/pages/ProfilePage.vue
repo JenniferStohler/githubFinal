@@ -27,7 +27,7 @@ export default {
       await profilesService.getProfile(route.params.id)
     })
     return reactive({
-      profile: computed(() => AppState.profile)
+      profile: computed(() => AppState.activeProfile)
     })
   }
 }

@@ -54,6 +54,12 @@ namespace FinalProject.Server.Services
       _kp.Remove(id);
     }
 
+    internal Keep GetUserKeeps(Keep k)
+    {
+      throw new NotImplementedException();
+    }
+
+
     //Get Profiles Keeps
   }
 }

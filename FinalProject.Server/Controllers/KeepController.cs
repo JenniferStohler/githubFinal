@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using FinalProject.Server.Models;
@@ -9,16 +10,47 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Server.Controllers
 {
   [ApiController]
-  [Route("api/keeps/[controller]")]
+  [Route("api/[controller]")]
   public class KeepController : ControllerBase
   {
     private readonly KeepService _ks;
+
     public KeepController(KeepService ks)
     {
       _ks = ks;
     }
+    [HttpGet]
+    public ActionResult<IEnumerable<Keep>> Get(int id)
+    {
+      try
+      {
+
+        return Ok(_ks.Get(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpGet("keeps")]
     [Authorize]
-    [HttpPost]
+    public async Task<ActionResult<Keep>> GetUserKeeps([FromBody] Keep k)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        k.CreatorId = userInfo.Id;
+        Keep newK = _ks.GetUserKeeps(k);
+        newK.Creator = userInfo;
+        return Ok(newK);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [Authorize]
+    [HttpPost("{id}")]
     public async Task<ActionResult<KeepService>> Create([FromBody] Keep k)
     {
       try
@@ -35,7 +67,7 @@ namespace FinalProject.Server.Controllers
       }
     }
     [Authorize]
-    [HttpPut("{id}")]
+    [HttpPut("{id}/keeps")]
     public async Task<ActionResult<Keep>> Update(int id, [FromBody] Keep k)
     {
       Account userInfo = await HttpContext.GetUserInfoAsync<Account>();

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Server.Controllers
 {
   [ApiController]
-  [Route("api/[controller]")]
+  [Route("api/vaults/[controller]")]
   public class VaultController : ControllerBase
   {
     private readonly VaultService _vs;
@@ -108,6 +108,7 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
+    //Add Get Keep by Vault Id
 
   }
 }

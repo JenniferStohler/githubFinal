@@ -30,6 +30,9 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
 
+      //Get Profiles Vaults- Get Vaults by Profile Id
+      //Get Profiles Keeps- Get Keeps by ProfileId
+
     }
   }
 }

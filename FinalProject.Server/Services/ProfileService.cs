@@ -22,15 +22,15 @@ public class ProfileService
   {
     return _repo.GetByKeeps(keeps);
   }
-  //   internal Profile GetOrCreateProfile(Profile userInfo)
-  //   {
-  //     Profile profile = _repo.GetById(userInfo);
-  //     if (profile == null)
-  //     {
-  //       return _repo.Create(userInfo);
-  //     }
-  //     return profile;
-  //   }
+  internal Profile GetOrCreateProfile(Profile userInfo)
+  {
+    Profile profile = _repo.GetById(userInfo);
+    if (profile == null)
+    {
+      return _repo.Create(userInfo);
+    }
+    return profile;
+  }
   //   //   internal Profile Edit(Profile editData, string userEmail)
   //   //   {
   //   //     Profile original = GetProfileByEmail(userEmail);

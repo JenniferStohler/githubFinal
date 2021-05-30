@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FinalProject.Server.Models;
 using FinalProject.Server.Repositories;
 
@@ -32,6 +33,11 @@ namespace FinalProject.Server.Services
       }
 
       return _kp.Update(k);
+    }
+
+    public List<Keep> GetAll()
+    {
+      return _kp.GetAll();
     }
 
     internal Keep Get(int id)

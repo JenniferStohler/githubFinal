@@ -32,6 +32,7 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
+
     [HttpGet("{id}")]
     public ActionResult<Vault> Get(int id)
     {

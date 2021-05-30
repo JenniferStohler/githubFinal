@@ -20,12 +20,12 @@ namespace FinalProject.Server.Controllers
       _ks = ks;
     }
     [HttpGet]
-    public ActionResult<IEnumerable<Keep>> Get(int id)
+    public ActionResult<IEnumerable<Keep>> GetAll()
     {
       try
       {
 
-        return Ok(_ks.Get(id));
+        return Ok(_ks.GetAll());
       }
       catch (Exception e)
       {

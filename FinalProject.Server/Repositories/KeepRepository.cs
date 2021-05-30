@@ -1,19 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using Dapper;
 using FinalProject.Server.Models;
 
 namespace FinalProject.Server.Repositories
 {
   public class KeepRepository
   {
-    internal List<Keep> GetKeeps(int vaultId)
+    private readonly IDbConnection _db;
+    public KeepRepository(IDbConnection db)
     {
-      throw new NotImplementedException();
+      _db = db;
     }
+    // internal List<Keep> GetKeeps(int vaultId)
+    // {
+    //   throw new NotImplementedException();
+    // }
 
-    internal Keep Create()
+    internal Keep Create(Keep k)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      INSERT INTO
+      keeps(name, description, picture, views, shares, keeps, creatorId, vaultId)
+      VALUES
+      name = @Name,
+      description = @Description,
+      picture = @Picture,
+      views = @Views,
+      shares = @Shares,
+      keeps = @Keeps,
+      creatorId = @CreatorId,
+      vaultId = @VaultId;
+      SELECT LAST_INSERT_ID();
+      ";
+      k.Id = _db.ExecuteScalar<int>(sql, k);
+      return k;
     }
 
     internal Keep GetById(int id)
@@ -27,6 +49,11 @@ namespace FinalProject.Server.Repositories
     }
 
     internal void Remove(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal List<Keep> GetAll()
     {
       throw new NotImplementedException();
     }

@@ -11,6 +11,9 @@ COMPLETED
 HALF-COMPLETED
 -Users can Register, login and automatically authenticated on refresh
 -Create and Delete Vaults
+-All Valid Auth API Tests pass
+-All No Auth API Tests pass
+-All Invalid Auth API Tests pass
 --------------------------------------------------------------------------------------------------------
 NOT COMPLETED
 --------------------------------------------------------------------------------------------------------

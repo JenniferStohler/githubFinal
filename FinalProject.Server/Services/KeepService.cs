@@ -15,7 +15,7 @@ namespace FinalProject.Server.Services
 
     internal Keep Create(Keep k)
     {
-      return _kp.Create();
+      return _kp.Create(k);
     }
 
     internal Keep Update(Keep k, string id)

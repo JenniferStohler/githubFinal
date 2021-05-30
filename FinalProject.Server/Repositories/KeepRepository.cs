@@ -13,10 +13,6 @@ namespace FinalProject.Server.Repositories
     {
       _db = db;
     }
-    // internal List<Keep> GetKeeps(int vaultId)
-    // {
-    //   throw new NotImplementedException();
-    // }
 
     internal Keep Create(Keep k)
     {
@@ -36,7 +32,13 @@ namespace FinalProject.Server.Repositories
       ";
       k.Id = _db.ExecuteScalar<int>(sql, k);
       return k;
+      throw new NotImplementedException();
     }
+
+    // internal List<Keep> GetKeeps(int vaultId)
+    // {
+    //   throw new NotImplementedException();
+    // }
 
     internal Keep GetById(int id)
     {
@@ -59,9 +61,12 @@ namespace FinalProject.Server.Repositories
       return k;
     }
 
-    internal void Remove(int id)
+    internal bool Remove(int Id)
     {
-      throw new NotImplementedException();
+      string sql = @"
+     DELETE FROM keeps WHERE id = @Id LIMIT 1";
+      int remove = _db.Execute(sql, new { Id });
+      return remove == 1;
     }
 
     internal List<Keep> GetAll()

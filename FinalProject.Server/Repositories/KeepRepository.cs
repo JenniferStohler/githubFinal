@@ -47,7 +47,16 @@ namespace FinalProject.Server.Repositories
 
     internal Keep Update(Keep k)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      UPDATE keeps
+      SET
+        name = @Name,
+        description = @Description,
+        picture = @Picture
+        WHERE id = @id
+        ";
+      _db.Execute(sql, k);
+      return k;
     }
 
     internal void Remove(int id)

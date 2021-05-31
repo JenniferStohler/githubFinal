@@ -40,7 +40,7 @@ export default {
   name: 'Keep',
   props: {
     keep: {
-      type: Object,
+      type: Array,
       required: true
     }
   },

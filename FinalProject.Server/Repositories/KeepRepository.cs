@@ -44,7 +44,7 @@ namespace FinalProject.Server.Repositories
     {
       string sql = @"
       SELECT FROM keeps WHERE id = @Id";
-      return _dbQuery.FirstOrDefault<Keep>(sql, new { Id = id });
+      return _db.QueryFirstOrDefault<Keep>(sql, new { Id = id });
     }
 
     internal Keep Update(Keep k)
@@ -59,6 +59,17 @@ namespace FinalProject.Server.Repositories
         ";
       _db.Execute(sql, k);
       return k;
+    }
+
+    internal List<Keep> GetKeepsByVaultId(int vaultId)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Keep GetUserKeeps(Keep k)
+    {
+      string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
+      return _db.Query<Keep>(sql, k);
     }
 
     internal bool Remove(int Id)

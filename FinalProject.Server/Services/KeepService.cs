@@ -62,7 +62,7 @@ namespace FinalProject.Server.Services
 
     internal Keep GetUserKeeps(Keep k)
     {
-      throw new NotImplementedException();
+      return _kp.GetUserKeeps(k);
     }
 
 

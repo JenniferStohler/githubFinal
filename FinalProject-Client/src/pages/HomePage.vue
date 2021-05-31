@@ -87,11 +87,36 @@
       </div>
     </div>
   </div>
+  <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" />
 </template>
 
 <script>
+
+import { onMounted, reactive, computed } from 'vue'
+import Notification from '../utils/Notification'
+// import { vaultDetailsService } from '../services/VaultDetailsService'
+import { keepsService } from '../services/KeepsService'
+import { AppState } from '../AppState'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    const state = reactive({
+      keeps: computed(() => AppState.keeps)
+      // vaults: computed(() => AppState.vaults)
+    })
+    onMounted(async() => {
+      try {
+        await keepsService.getAll()
+        // await vaultDetailsService.getVaults()
+      } catch (error) {
+        Notification.toast('Error: ' + error, 'error')
+      }
+    })
+    return {
+      state
+    }
+  }
 }
 
 </script>

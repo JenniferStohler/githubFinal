@@ -4,7 +4,7 @@
 import { computed, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { vaultDetailsService } from '../services/KeepsService'
-import { AppState } from '..AppState'
+import { AppState } from '../AppState'
 
 export default {
   name: 'VaultsPage',

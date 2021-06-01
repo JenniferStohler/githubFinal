@@ -14,7 +14,7 @@ namespace FinalProject.Server.Services
       _vkp = vkp;
     }
 
-    internal Vaultkeep Create(VaultkeepService vk)
+    internal Vaultkeep Create(Vaultkeep vk)
     {
       return _vkp.Create();
     }

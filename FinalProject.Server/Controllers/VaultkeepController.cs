@@ -22,12 +22,12 @@ namespace FinalProject.Server.Controllers
     }
     [Authorize]
     [HttpPost("{id}")]
-    public async Task<ActionResult<VaultkeepService>> Create([FromBody] VaultkeepService vk)
+    public async Task<ActionResult<Vaultkeep>> Create([FromBody] Vaultkeep vk)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        // vk.CreatorId = userInfo.Id;
+        vk.CreatorId = userInfo.Id;
         Vaultkeep newVK = _vks.Create(vk);
         newVK.Creator = userInfo;
         return Ok(newVK);
@@ -52,7 +52,7 @@ namespace FinalProject.Server.Controllers
       }
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult<string>> Remove(int id)
     {

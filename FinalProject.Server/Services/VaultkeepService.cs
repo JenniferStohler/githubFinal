@@ -16,7 +16,7 @@ namespace FinalProject.Server.Services
 
     internal Vaultkeep Create(Vaultkeep vk)
     {
-      return _vkp.Create();
+      return _vkp.Create(vk);
     }
 
     // internal List<Vaultkeep> GetAll()
@@ -27,20 +27,25 @@ namespace FinalProject.Server.Services
     // {
     //   return _vkp.Remove();
     // }
-    public Vaultkeep GetAll(int id)
+    public List<Vaultkeep> GetAll(int id)
     {
       return _vkp.GetAll(id);
     }
 
+    private Vaultkeep GetById(int id)
+    {
+      return _vkp.GetById(id);
+    }
     internal void Remove(int id, string userId)
     {
-      Vaultkeep vaultkeep = GetAll(id);
+      Vaultkeep vaultkeep = GetById(id);
       if (vaultkeep.CreatorId != userId)
       {
         throw new Exception("You do not have permission to delete this");
       }
       _vkp.Remove(id);
     }
+
 
     // internal object GetAll()
     // {

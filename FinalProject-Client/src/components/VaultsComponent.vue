@@ -1,6 +1,3 @@
-<template>
-</template>
-
 <script>
 import { vaultDetailsService } from '../services/VaultsService'
 import Notification from '../utils/Notification'

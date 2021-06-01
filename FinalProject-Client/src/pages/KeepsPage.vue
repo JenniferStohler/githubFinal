@@ -1,5 +1,3 @@
-<template>
-</template>
 
 <script>
 
@@ -36,6 +34,19 @@ export default {
         Notification.toast('Error: ' + error, 'error')
       }
     })
+    return {
+      state,
+      route,
+      async addKeep() {
+        try {
+          await keepsService.addKeep(route.params.id, state.keep)
+          state.keep = []
+          Notification.toast('Keep Added!', 'success')
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
+    }
   }
 }
 

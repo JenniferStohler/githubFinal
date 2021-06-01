@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FinalProject.Server.Models;
 using FinalProject.Server.Repositories;
 
@@ -18,18 +19,32 @@ namespace FinalProject.Server.Services
       return _vkp.Create();
     }
 
-    internal object GetAll()
-    {
-      throw new NotImplementedException();
-    }
+    // internal List<Vaultkeep> GetAll()
+    // {
+    //   return _vkp.GetAll();
+    // }
     // internal Vaultkeep Remove(VaultkeepService vks)
     // {
     //   return _vkp.Remove();
     // }
-
-    internal void Remove(int id1, string id2)
+    public Vaultkeep GetAll(int id)
     {
-      throw new NotImplementedException();
+      return _vkp.GetAll(id);
     }
+
+    internal void Remove(int id, string userId)
+    {
+      Vaultkeep vaultkeep = GetAll(id);
+      if (vaultkeep.CreatorId != userId)
+      {
+        throw new Exception("You do not have permission to delete this");
+      }
+      _vkp.Remove(id);
+    }
+
+    // internal object GetAll()
+    // {
+    //   throw new NotImplementedException();
+    // }
   }
 }

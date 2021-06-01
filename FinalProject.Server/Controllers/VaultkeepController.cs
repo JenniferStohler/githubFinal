@@ -40,11 +40,11 @@ namespace FinalProject.Server.Controllers
     }
     // [Authorize]
     [HttpGet]
-    public ActionResult<List<Vaultkeep>> GetAll()
+    public ActionResult<List<Vaultkeep>> GetAll(int id)
     {
       try
       {
-        return Ok(_vks.GetAll());
+        return Ok(_vks.GetAll(id));
       }
       catch (Exception e)
       {

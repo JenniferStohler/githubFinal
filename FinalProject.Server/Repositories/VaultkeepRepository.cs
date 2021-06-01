@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FinalProject.Server.Models;
 
 namespace FinalProject.Server.Repositories
@@ -12,6 +13,21 @@ namespace FinalProject.Server.Repositories
     }
 
     internal Vaultkeep Remove()
+    {
+      throw new NotImplementedException();
+    }
+
+    internal List<Vaultkeep> GetAll()
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void Remove(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal Vaultkeep GetAll(int id)
     {
       throw new NotImplementedException();
     }

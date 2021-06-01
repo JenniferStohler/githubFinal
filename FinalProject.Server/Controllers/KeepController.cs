@@ -32,7 +32,7 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet("{id}/keeps")]
+    [HttpGet("api/keeps/{id}")]
     [Authorize]
     public async Task<ActionResult<Keep>> GetById([FromBody] int id)
     {

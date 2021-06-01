@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinalProject.Server.Controllers
 {
   [ApiController]
-  [Route("api/vaults/[controller]")]
+  [Route("api/[controller]")]
   public class VaultController : ControllerBase
   {
     private readonly VaultService _vs;
@@ -33,7 +33,7 @@ namespace FinalProject.Server.Controllers
       }
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}/vaults")]
     public ActionResult<Vault> Get(int id)
     {
       try

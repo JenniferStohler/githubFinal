@@ -76,7 +76,7 @@ namespace FinalProject.Server.Controllers
     }
 
     [Authorize]
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}/keeps")]
     public async Task<ActionResult<string>> Remove(int id)
     {
       try

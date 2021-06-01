@@ -27,7 +27,7 @@ namespace FinalProject.Server.Controllers
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        vk.CreatorId = userInfo.Id;
+        // vk.CreatorId = userInfo.Id;
         Vaultkeep newVK = _vks.Create(vk);
         newVK.Creator = userInfo;
         return Ok(newVK);

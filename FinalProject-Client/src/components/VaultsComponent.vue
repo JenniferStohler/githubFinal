@@ -15,7 +15,7 @@ export default {
   },
   setup(props) {
     return {
-      async deleteVault(id) {
+      async deleteVault() {
         try {
           vaultDetailsService.deleteVault(props.vault.id)
         } catch (error) {

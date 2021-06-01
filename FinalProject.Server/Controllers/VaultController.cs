@@ -51,7 +51,7 @@ namespace FinalProject.Server.Controllers
     {
       try
       {
-        List<Keep> keeps = _vs.GetKeeps(id);
+        List<Keep> keeps = _vs.GetKeepsByVaultId(id);
         return Ok(keeps);
       }
       catch (Exception e)

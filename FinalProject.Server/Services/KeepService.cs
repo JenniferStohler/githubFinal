@@ -60,10 +60,15 @@ namespace FinalProject.Server.Services
       _kp.Remove(id);
     }
 
-    internal Keep GetUserKeeps(Keep k)
+    internal Keep GetById(int id)
     {
-      return _kp.GetUserKeeps(k);
+      return _kp.GetById(id);
     }
+
+    // internal Keep GetUserKeeps(string userId)
+    // {
+    //   return _kp.GetUserKeeps(userId);
+    // }
 
 
     //Get Profiles Keeps

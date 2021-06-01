@@ -63,14 +63,22 @@ namespace FinalProject.Server.Repositories
 
     internal List<Keep> GetKeepsByVaultId(int vaultId)
     {
-      throw new NotImplementedException();
+      string sql = @"
+    SELECT
+    k.*,
+    vk.Id AS vaultKeepId
+    FROM vaultkeeps vk
+    INNER JOIN keeps k ON k.id = vk.keepId
+    WHERE vaultId = @VaultId AND isPrivate = 0";
+      return _db.Query<Vaultkeep>(sql, new { VaultId });
+
     }
 
-    internal Keep GetUserKeeps(Keep k)
-    {
-      string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
-      return _db.Query<Keep>(sql, k);
-    }
+    // internal Keep GetById(int id)
+    // {
+    //   string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
+    //   return _db.Query<Keep>(sql, new { id });
+    // }
 
     internal bool Remove(int Id)
     {

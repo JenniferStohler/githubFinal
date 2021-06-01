@@ -32,17 +32,15 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet("keeps")]
+    [HttpGet("{id}")]
     [Authorize]
-    public async Task<ActionResult<Keep>> GetUserKeeps([FromBody] Keep k)
+    public async Task<ActionResult<Keep>> GetById([FromBody] int id)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        k.CreatorId = userInfo.Id;
-        Keep newK = _ks.GetUserKeeps(k);
-        newK.Creator = userInfo;
-        return Ok(newK);
+
+        return Ok(_ks.GetById(id));
       }
       catch (Exception e)
       {

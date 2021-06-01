@@ -46,8 +46,7 @@ namespace FinalProject.Server.Controllers
 
 
   }
-]
+
   ///api/vaults/{{vaultId}}/keeps
   //POST, DELETE, GET
-}
 }

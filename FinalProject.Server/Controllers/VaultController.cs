@@ -47,7 +47,7 @@ namespace FinalProject.Server.Controllers
       }
     }
     [HttpGet("{id}/keeps")]
-    public ActionResult<List<Keep>> GetKeeps(int id)
+    public ActionResult<List<Keep>> GetKeepsByVaultId(int id)
     {
       try
       {

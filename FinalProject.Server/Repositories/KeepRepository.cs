@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using FinalProject.Server.Models;
 
@@ -64,13 +65,17 @@ namespace FinalProject.Server.Repositories
     internal List<Keep> GetKeepsByVaultId(int vaultId)
     {
       string sql = @"
-    SELECT
-    k.*,
-    vk.Id AS vaultKeepId
-    FROM vaultkeeps vk
-    INNER JOIN keeps k ON k.id = vk.keepId
-    WHERE vaultId = @VaultId AND isPrivate = 0";
-      return _db.Query<Vaultkeep>(sql, new { VaultId });
+      SELECT
+      k.*,
+      v.*
+      FROM keeps k
+      JOIN vaults v ON k.creatorId = v.id ";
+      return _db.Query<Keep, Profile, Keep>(sql,
+      (k, v) =>
+      {
+        k.Creator = v;
+        return k;
+      }, splitOn: "id").ToList();
 
     }
 

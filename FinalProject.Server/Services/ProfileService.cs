@@ -22,12 +22,12 @@ public class ProfileService
   {
     return _repo.GetByKeeps(keeps);
   }
-  internal Profile GetOrCreateProfile(Profile userInfo)
+  internal Profile GetOrCreateProfile(string id)
   {
-    Profile profile = _repo.GetById(userInfo);
+    Profile profile = _repo.GetById(id);
     if (profile == null)
     {
-      return _repo.Create(userInfo);
+      return _repo.Create(profile);
     }
     return profile;
   }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using FinalProject.Server.Models;
 using FinalProject.Server.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -20,12 +21,12 @@ namespace FinalProject.Server.Controllers
 
     }
     [Authorize]
-    [HttpPost]
+    [HttpPost("{id}")]
     public async Task<ActionResult<VaultkeepService>> Create([FromBody] VaultkeepService vk)
     {
       try
       {
-        Account userInfo = await HttpContext.GetUserInfoAsnyc<Vaultkeep>();
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         vk.CreatorId = userInfo.Id;
         Vaultkeep newVK = _vks.Create(vk);
         newVK.Creator = userInfo;
@@ -37,13 +38,35 @@ namespace FinalProject.Server.Controllers
       }
 
     }
-    [Authorize]
-    [HttpGet("{id}")]
+    // [Authorize]
+    [HttpGet]
     public ActionResult<List<Vaultkeep>> GetAll()
     {
-
+      try
+      {
+        return Ok(_vks.GetAll());
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
     }
 
+    // [Authorize]
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> Remove(int id)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        _vks.Remove(id, userInfo.Id);
+        return Ok("Deleted");
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
   }
 

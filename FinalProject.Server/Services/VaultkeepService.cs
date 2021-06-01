@@ -18,5 +18,10 @@ namespace FinalProject.Server.Services
       return _vkp.Create();
     }
 
+    internal object GetAll()
+    {
+      throw new NotImplementedException();
+    }
+
   }
 }

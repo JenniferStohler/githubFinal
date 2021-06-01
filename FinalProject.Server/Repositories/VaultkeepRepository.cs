@@ -10,5 +10,10 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
+
+    internal Vaultkeep Remove()
+    {
+      throw new NotImplementedException();
+    }
   }
 }

@@ -22,6 +22,14 @@ namespace FinalProject.Server.Services
     {
       throw new NotImplementedException();
     }
+    // internal Vaultkeep Remove(VaultkeepService vks)
+    // {
+    //   return _vkp.Remove();
+    // }
 
+    internal void Remove(int id1, string id2)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

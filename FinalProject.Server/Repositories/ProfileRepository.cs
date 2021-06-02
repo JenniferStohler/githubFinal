@@ -12,6 +12,16 @@ namespace FinalProject.Server.Repositories
     {
       _db = db;
     }
+    internal Profile Create(Profile newProfile)
+    {
+      string sql = @"
+      INSERT INTO accounts
+        (name, picture, id, email)
+        VALUES
+        (@Name, @Picture, @Id, @Email)";
+      _db.Execute(sql, newProfile);
+      return newProfile;
+    }
     internal Profile GetById(string id)
     {
       string sql = "SELECT * FROM accounts WHERE id = @id";
@@ -32,14 +42,10 @@ namespace FinalProject.Server.Repositories
 
     // }
 
-    internal Profile Create(Profile userInfo)
-    {
 
-    }
-
-    internal Profile GetByProfileId(string id)
-    {
-      throw new NotImplementedException();
-    }
+    // internal Profile GetByProfileId(string id)
+    // {
+    //   throw new NotImplementedException();
+    // }
   }
 }

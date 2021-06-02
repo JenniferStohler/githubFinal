@@ -27,7 +27,7 @@ namespace FinalProject.Server.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_ps.GetOrCreateProfile(userInfo));
+        return Ok(_ps.GetOrCreateProfile(userInfo.Id));
       }
       catch (Exception e)
       {

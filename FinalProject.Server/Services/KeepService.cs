@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FinalProject.Server.Models;
 using FinalProject.Server.Repositories;
 
@@ -13,9 +14,10 @@ namespace FinalProject.Server.Services
       _kp = kp;
     }
 
-    internal Keep Create(Keep k)
+    public Keep Create(Keep newKeep)
     {
-      return _kp.Create(k);
+      newKeep.Id = _kp.Create(newKeep);
+      return newKeep;
     }
 
     internal Keep Update(Keep k, string id)
@@ -35,19 +37,20 @@ namespace FinalProject.Server.Services
       return _kp.Update(k);
     }
 
-    public List<Keep> GetAll()
+    public IEnumerable<Keep> GetAll()
     {
-      return _kp.GetAll();
+      IEnumerable<Keep> keeps = _kp.GetAll();
+      return keeps.ToList().FindAll(k => k.Published);
     }
 
-    internal Keep Get(int id)
+    public Keep Get(int id)
     {
-      var k = _kp.GetById(id);
-      if (k == null)
+      Keep original = _kp.GetById(id);
+      if (original == null)
       {
         throw new Exception("Invalid Id");
       }
-      return k;
+      return original;
     }
 
     internal void Remove(int id, string userId)
@@ -60,10 +63,27 @@ namespace FinalProject.Server.Services
       _kp.Remove(id);
     }
 
+
     internal Keep GetById(int id)
     {
       return _kp.GetById(id);
     }
+
+    internal IEnumerable<Keep> GetKeepsByVaultId(int id)
+    {
+      return _kp.GetKeepsByVaultId(id).ToList().FindAll(k => k.Published);
+    }
+    internal IEnumerable<Keep> GetByProfileId(string id)
+    {
+      return _kp.GetByCreatorId(id).ToList().FindAll(k => k.Published);
+    }
+
+    // internal IEnumerable<Keep> GetByProfileId(string id)
+    // {
+    //   return _kp.GetByCreatorId(id).ToList().FindAll(k => k.Published);
+    // }
+
+
 
     // internal Keep GetUserKeeps(string userId)
     // {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FinalProject.Server.Models;
 using FinalProject.Server.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -10,11 +11,13 @@ namespace FinalProject.Server.Controllers
   [Route("api/[controller]")]
   public class ProfileController : ControllerBase
   {
-    private readonly AccountService _accountService;
+    private readonly ProfileService _profileService;
+    private readonly KeepService _ks;
 
-    public ProfileController(AccountService accountService)
+    public ProfileController(ProfileService profileService, KeepService ks)
     {
-      _accountService = accountService;
+      _profileService = profileService;
+      _ks = ks;
     }
     [HttpGet("{id}")]
     // [Authorize]
@@ -22,17 +25,31 @@ namespace FinalProject.Server.Controllers
     {
       try
       {
-        Profile a = _accountService.GetProfileById(id);
-        return Ok(a);
+        Profile profile = _profileService.GetProfileById(id);
+        return Ok(profile);
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
 
+
       //Get Profiles Vaults- Get Vaults by Profile Id
       //Get Profiles Keeps- Get Keeps by ProfileId
 
+    }
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<Keep>> GetKeepsByProfileId(string id)
+    {
+      try
+      {
+        IEnumerable<Keep> keeps = _ks.GetByProfileId(id);
+        return Ok(keeps);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
     }
   }
 }

@@ -14,13 +14,16 @@ namespace FinalProject.Server.Controllers
   public class KeepController : ControllerBase
   {
     private readonly KeepService _ks;
+    private readonly VaultService _vs;
 
-    public KeepController(KeepService ks)
+    public KeepController(KeepService ks, VaultService vs)
     {
       _ks = ks;
+      _vs = vs;
     }
     [HttpGet]
-    public ActionResult<IEnumerable<Keep>> GetAll()
+
+    public ActionResult<IEnumerable<Keep>> Get()
     {
       try
       {
@@ -32,43 +35,44 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet("api/keeps/{id}")]
-    [Authorize]
-    public async Task<ActionResult<Keep>> GetById([FromBody] int id)
-    {
-      try
-      {
-        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+    // [HttpGet("api/keeps/{id}")]
+    // [Authorize]
+    // public async Task<ActionResult<Keep>> GetById([FromBody] int id)
+    // {
+    //   try
+    //   {
+    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
 
-        return Ok(_ks.GetById(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    //     return Ok(_ks.GetById(id));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
+
+    [HttpPost]
     [Authorize]
-    [HttpPost("{id}")]
-    public async Task<ActionResult<KeepService>> Create([FromBody] Keep k)
+    public async Task<ActionResult<KeepService>> Create([FromBody] Keep newKeep)
     {
       try
       {
-        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        k.CreatorId = userInfo.Id;
-        Keep newK = _ks.Create(k);
-        newK.Creator = userInfo;
-        return Ok(newK);
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        newKeep.CreatorId = userInfo.Id;
+        Keep created = _ks.Create(newKeep);
+        created.Creator = userInfo;
+        return Ok(created);
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-    [Authorize]
-    [HttpPut("{id}/keeps")]
+
+    [HttpPut("{id}")]
     public async Task<ActionResult<Keep>> Update(int id, [FromBody] Keep k)
     {
-      Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+      Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
       k.Id = id;
       Keep newK = _ks.Update(k, userInfo.Id);
       newK.Creator = userInfo;
@@ -76,12 +80,12 @@ namespace FinalProject.Server.Controllers
     }
 
     [Authorize]
-    [HttpDelete("{id}/keeps")]
+    [HttpDelete("{id}")]
     public async Task<ActionResult<string>> Remove(int id)
     {
       try
       {
-        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         _ks.Remove(id, userInfo.Id);
         return Ok("Deleted");
       }

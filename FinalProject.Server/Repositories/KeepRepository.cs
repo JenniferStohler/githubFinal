@@ -15,24 +15,17 @@ namespace FinalProject.Server.Repositories
       _db = db;
     }
 
-    internal Keep Create(Keep k)
+    internal int Create(Keep KeepData)
     {
       string sql = @"
-      INSERT INTO
-      keeps(name, description, picture, views, shares, keeps, creatorId, vaultId)
+      INSERT INTO keeps
+      (name, description, picture, creatorId)
       VALUES
-      name = @Name,
-      description = @Description,
-      picture = @Picture,
-      views = @Views,
-      shares = @Shares,
-      keeps = @Keeps,
-      creatorId = @CreatorId,
-      vaultId = @VaultId;
+      (@Name, @Description, @Picture, @CreatorId);
       SELECT LAST_INSERT_ID();
       ";
-      k.Id = _db.ExecuteScalar<int>(sql, k);
-      return k;
+      return _db.ExecuteScalar<int>(sql, KeepData);
+
       throw new NotImplementedException();
     }
 
@@ -79,6 +72,18 @@ namespace FinalProject.Server.Repositories
 
     }
 
+    internal object GetByCreatorId(string id)
+    {
+      string sql = @"
+      SELECT
+      k.*,
+      a.*
+      FROM keeps keep
+      JOIN account a ON k.creatorId = a.id
+      WHERE k.creatorId = @id;";
+      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, new { id }, splitOn: "id");
+    }
+
     // internal Keep GetById(int id)
     // {
     //   string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
@@ -93,9 +98,16 @@ namespace FinalProject.Server.Repositories
       return remove == 1;
     }
 
-    internal List<Keep> GetAll()
+    internal IEnumerable<Keep> GetAll()
     {
-      throw new NotImplementedException();
+      string sql = @"
+     SELECT
+     k.*,
+     a.*
+     FROM keeps keep
+     JOIN accounts account ON k.creatorId = a.id
+     WHERE k.id = @id;";
+      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, splitOn: "id");
     }
     //Create Vault Keeps
   }

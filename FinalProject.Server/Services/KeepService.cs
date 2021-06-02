@@ -63,6 +63,10 @@ namespace FinalProject.Server.Services
       _kp.Remove(id);
     }
 
+    internal IEnumerable<Keep> getKeepsByAccountId(string id)
+    {
+      return _kp.GetByCreatorId(id);
+    }
 
     internal Keep GetById(int id)
     {

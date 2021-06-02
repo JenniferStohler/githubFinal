@@ -11,20 +11,17 @@ public class ProfileService
   }
   internal Profile GetProfileById(string id)
   {
-    return _repo.GetById(id);
+    return _repo.GetByProfileId(id);
   }
   // internal string GetVaultById(string id)
   // {
   //   return _repo.GetById(vaultId);
 
   // }
-  internal string GetKeepsById(string keeps)
-  {
-    return _repo.GetByKeeps(keeps);
-  }
+
   internal Profile GetOrCreateProfile(string id)
   {
-    Profile profile = _repo.GetById(id);
+    Profile profile = _repo.GetByProfileId(id);
     if (profile == null)
     {
       return _repo.Create(profile);

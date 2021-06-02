@@ -41,21 +41,18 @@ namespace FinalProject.Server.Repositories
       return _db.QueryFirstOrDefault<Keep>(sql, new { Id = id });
     }
 
-    internal Keep Update(Keep k)
+    internal IEnumerable<Keep> GetAll()
     {
       string sql = @"
-      UPDATE keeps
-      SET
-        name = @Name,
-        description = @Description,
-        picture = @Picture
-        WHERE id = @id
-        ";
-      _db.Execute(sql, k);
-      return k;
+     SELECT
+     k.*,
+     a.*
+     FROM keeps keep
+     JOIN accounts account ON k.creatorId = a.id
+     WHERE k.id = @id;";
+      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, splitOn: "id");
     }
-
-    internal List<Keep> GetKeepsByVaultId(int vaultId)
+    internal List<Keep> GetKeepsByVaultId(int id)
     {
       string sql = @"
       SELECT
@@ -71,8 +68,7 @@ namespace FinalProject.Server.Repositories
       }, splitOn: "id").ToList();
 
     }
-
-    internal object GetByCreatorId(string id)
+    internal IEnumerable<Keep> GetByCreatorId(string id)
     {
       string sql = @"
       SELECT
@@ -83,12 +79,30 @@ namespace FinalProject.Server.Repositories
       WHERE k.creatorId = @id;";
       return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, new { id }, splitOn: "id");
     }
-
-    // internal Keep GetById(int id)
-    // {
-    //   string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
-    //   return _db.Query<Keep>(sql, new { id });
-    // }
+    internal Keep Get(int id)
+    {
+      string sql = @"
+    SELECT
+    k.*,
+    a.*
+    FROM keeps k
+    JOIN accounts a ON k.creatorId = account.id
+    WHERE k.id = @id;";
+      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, new { id }, splitOn: "id").FirstOrDefault();
+    }
+    internal Keep Update(Keep k)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+        name = @Name,
+        description = @Description,
+        picture = @Picture
+        WHERE id = @id
+        ";
+      _db.Execute(sql, k);
+      return k;
+    }
 
     internal bool Remove(int Id)
     {
@@ -98,17 +112,14 @@ namespace FinalProject.Server.Repositories
       return remove == 1;
     }
 
-    internal IEnumerable<Keep> GetAll()
-    {
-      string sql = @"
-     SELECT
-     k.*,
-     a.*
-     FROM keeps keep
-     JOIN accounts account ON k.creatorId = a.id
-     WHERE k.id = @id;";
-      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, splitOn: "id");
-    }
+
+    // internal Keep GetById(int id)
+    // {
+    //   string sql = "SELECT * FROM keeps WHERE creatorId = @UserId";
+    //   return _db.Query<Keep>(sql, new { id });
+    // }
+
+
     //Create Vault Keeps
   }
 }

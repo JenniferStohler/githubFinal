@@ -8,10 +8,10 @@ namespace FinalProject.Server.Repositories
 {
   public class AccountRepository
   {
-    internal AccountService GetByEmail(string email)
-    {
-      throw new NotImplementedException();
-    }
+    // internal AccountService GetByEmail(string email)
+    // {
+    //   throw new NotImplementedException();
+    // }
 
     private readonly IDbConnection _db;
     public AccountRepository(IDbConnection db)

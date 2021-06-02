@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using FinalProject.Server.Models;
@@ -12,19 +13,21 @@ namespace FinalProject.Server.Controllers
   [Route("[controller]")]
   public class AccountController : ControllerBase
   {
-    private readonly AccountService _accountService;
-    public AccountController(AccountService accountService)
+    private readonly KeepService _ks;
+    private readonly ProfileService _ps;
+    public AccountController(KeepService keepService, ProfileService profileService)
     {
-      _accountService = accountService;
+      _ks = keepService;
+      _ps = profileService;
     }
     [HttpGet]
     [Authorize]
-    public async Task<ActionResult<AccountController>> GetTaskAsync()
+    public async Task<ActionResult<Profile>> Get()
     {
       try
       {
-        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        return Ok(_accountService.GetOrCreateProfile(userInfo));
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_ps.GetOrCreateProfile(userInfo));
       }
       catch (Exception e)
       {
@@ -33,5 +36,20 @@ namespace FinalProject.Server.Controllers
       }
     }
 
+    [HttpGet("keeps")]
+    public async Task<ActionResult<IEnumerable<Profile>>> GetKeepsByProfileIsAsync()
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        IEnumerable<Keep> keeps = _ks.getKeepsByAccountId(userInfo.Id);
+        return Ok(keeps);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
+

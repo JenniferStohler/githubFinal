@@ -11,12 +11,12 @@ namespace FinalProject.Server.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class KeepController : ControllerBase
+  public class KeepsController : ControllerBase
   {
     private readonly KeepService _ks;
     private readonly VaultService _vs;
 
-    public KeepController(KeepService ks, VaultService vs)
+    public KeepsController(KeepService ks, VaultService vs)
     {
       _ks = ks;
       _vs = vs;
@@ -35,21 +35,21 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
-    // [HttpGet("api/keeps/{id}")]
-    // [Authorize]
-    // public async Task<ActionResult<Keep>> GetById([FromBody] int id)
-    // {
-    //   try
-    //   {
-    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+    [HttpGet("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Keep>> GetById(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
 
-    //     return Ok(_ks.GetById(id));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+        return Ok(_ks.GetById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     [HttpPost]
     [Authorize]
@@ -68,7 +68,7 @@ namespace FinalProject.Server.Controllers
         return BadRequest(e.Message);
       }
     }
-
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<ActionResult<Keep>> Update(int id, [FromBody] Keep k)
     {

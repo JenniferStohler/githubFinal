@@ -40,26 +40,11 @@ namespace FinalProject.Server.Repositories
       string sql = @"
         UPDATE accounts
         SET
-        name = @NAme,
+        name = @Name,
         picture= @Picture,
         WHERE id = @Id;";
       _db.Execute(sql, update);
       return update;
     }
-
-    // internal string GetByEmail(string email)
-    // {
-
-    // }
-
-    // internal Account Create(Account userInfo)
-    // {
-
-    // }
-
-    // internal Account Edit(Account original)
-    // {
-
-    // }
   }
 }

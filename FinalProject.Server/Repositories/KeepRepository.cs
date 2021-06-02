@@ -25,8 +25,6 @@ namespace FinalProject.Server.Repositories
       SELECT LAST_INSERT_ID();
       ";
       return _db.ExecuteScalar<int>(sql, KeepData);
-
-      throw new NotImplementedException();
     }
 
     // internal List<Keep> GetKeeps(int vaultId)
@@ -47,9 +45,8 @@ namespace FinalProject.Server.Repositories
      SELECT
      k.*,
      a.*
-     FROM keeps keep
-     JOIN accounts account ON k.creatorId = a.id
-     WHERE k.id = @id;";
+     FROM keeps k
+     JOIN accounts a ON k.creatorId = a.id;";
       return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, splitOn: "id");
     }
     internal List<Keep> GetKeepsByVaultId(int id)
@@ -74,7 +71,7 @@ namespace FinalProject.Server.Repositories
       SELECT
       k.*,
       a.*
-      FROM keeps keep
+      FROM keeps k
       JOIN account a ON k.creatorId = a.id
       WHERE k.creatorId = @id;";
       return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, new { id }, splitOn: "id");

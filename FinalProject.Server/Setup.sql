@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS accounts (
-id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
+id VARCHAR(255)  NOT NULL primary key COMMENT 'primary key',
 name VARCHAR(255) COMMENT 'Username',
 email VARCHAR(255) COMMENT 'email',
 picture VARCHAR(255) COMMENT 'Profile Picture'

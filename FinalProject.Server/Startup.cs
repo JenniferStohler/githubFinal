@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using FinalProject.Server.Repositories;
 using FinalProject.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -46,10 +47,15 @@ namespace FinalProject.Server
       services.AddScoped<AccountRepository>();
       services.AddTransient<VaultRepository>();
       services.AddTransient<KeepRepository>();
+      services.AddTransient<ProfileRepository>();
+      services.AddTransient<VaultkeepRepository>();
 
       services.AddScoped<AccountService>();
       services.AddTransient<VaultService>();
       services.AddTransient<KeepService>();
+      services.AddTransient<ProfileService>();
+      services.AddTransient<VaultkeepService>();
+
 
 
     }
@@ -109,6 +115,8 @@ namespace FinalProject.Server
 
       app.UseDefaultFiles();
       app.UseStaticFiles();
+
+      Auth0ProviderExtension.ConfigureKeyMap(new List<string>() { "id" });
 
       app.UseRouting();
 

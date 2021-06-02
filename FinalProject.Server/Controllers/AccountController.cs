@@ -27,7 +27,7 @@ namespace FinalProject.Server.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_ps.GetOrCreateProfile(userInfo.Id));
+        return Ok(_ps.GetOrCreateProfile(userInfo.Id, userInfo));
       }
       catch (Exception e)
       {
@@ -37,7 +37,7 @@ namespace FinalProject.Server.Controllers
     }
 
     [HttpGet("keeps")]
-    public async Task<ActionResult<IEnumerable<Profile>>> GetKeepsByProfileIsAsync()
+    public async Task<ActionResult<IEnumerable<Profile>>> GetKeepsByProfileIdAsync()
     {
       try
       {

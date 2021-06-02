@@ -19,22 +19,16 @@ public class ProfileService
 
   // }
 
-  internal Profile GetOrCreateProfile(string id)
+  internal Profile GetOrCreateProfile(string id, Profile userInfo)
   {
     Profile profile = _repo.GetById(id);
     if (profile == null)
     {
-      return _repo.Create(profile);
+      return _repo.Create(userInfo);
     }
     return profile;
   }
-  //   //   internal Profile Edit(Profile editData, string userEmail)
-  //   //   {
-  //   //     Profile original = GetProfileByEmail(userEmail);
-  //   //     original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
-  //   //     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
-  //   //     return _repo.Edit(original);
-  //   //   }
+
 }
 
 

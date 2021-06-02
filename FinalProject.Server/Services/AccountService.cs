@@ -26,9 +26,10 @@ namespace FinalProject.Server.Services
     {
       return _repo.GetById(id);
     }
+    // }
     // internal Account Edit(Account editData, string userEmail)
     // {
-    //   Account original = GetProfileById();
+    //   Profile original = GetProfileById);
     //   original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
     //   original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     //   return _repo.Edit(original);

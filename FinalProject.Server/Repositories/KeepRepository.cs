@@ -36,7 +36,7 @@ namespace FinalProject.Server.Repositories
     {
       string sql = @"
       SELECT FROM keeps WHERE id = @Id";
-      return _db.QueryFirstOrDefault<Keep>(sql, new { Id = id });
+      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
     }
 
     internal IEnumerable<Keep> GetAll()

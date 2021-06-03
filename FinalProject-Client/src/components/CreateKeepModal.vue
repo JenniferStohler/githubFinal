@@ -14,25 +14,49 @@
           <form>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Title:</label>
-              <input type="text" class="form-control" id="title">
+
+              <input type="text"
+                     class="form-control"
+                     id="title"
+                     title="Keep Title..."
+                     placeholder="Keep Title"
+                     v-model="state.newKeep.title"
+                     required
+              >
             </div>
             <div class="form-group">
               <label for="message-text" class="col-form-label">Image URL:</label>
-              <textarea class="form-control" id="image"></textarea>
+
+              <input type="text"
+                     class="form-control"
+                     id="image"
+                     title="Keep Image URL..."
+                     placeholder="Keep Image"
+                     v-model="state.newKeep.image"
+                     required
+              >
             </div>
             <div class="form-group">
               <label for="message-text" class="col-form-label">Description:</label>
-              <textarea class="form-control" id="description"></textarea>
+
+              <input type="text"
+                     class="form-control"
+                     id="description"
+                     title="Keep Description..."
+                     placeholder="Keep Description"
+                     v-model="state.newKeep.description"
+                     required
+              >
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-success">
+                Submit
+              </button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-success">
-            Submit
-          </button>
         </div>
       </div>
     </div>

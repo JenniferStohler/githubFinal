@@ -1,5 +1,5 @@
 <script>
-import { vaultDetailsService } from '../services/VaultsService'
+import { vaultsService } from '../services/VaultsService'
 import Notification from '../utils/Notification'
 
 export default {
@@ -14,7 +14,7 @@ export default {
     return {
       async deleteVault() {
         try {
-          vaultDetailsService.deleteVault(props.vault.id)
+          vaultsService.deleteVault(props.vault.id)
         } catch (error) {
           Notification.toast(error, 'error')
         }

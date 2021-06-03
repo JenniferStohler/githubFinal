@@ -3,7 +3,7 @@
 
 import { computed, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
-import { vaultDetailsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
 import { AppState } from '../AppState'
 
 export default {
@@ -20,7 +20,7 @@ export default {
 
     onMounted(async() => {
       try {
-        await vaultDetailsService.getAll()
+        await vaultsService.getAll()
         state.loading = false
       } catch (error) {
         console.log(error)
@@ -29,7 +29,7 @@ export default {
 
     onMounted(async() => {
       try {
-        await vaultDetailsService.getActive(route.params.id)
+        await vaultsService.getActive(route.params.id)
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }
@@ -39,7 +39,7 @@ export default {
       route,
       async createVault() {
         try {
-          await vaultDetailsService.createVault(route.params.id, state.vault)
+          await vaultsService.createVault(route.params.id, state.vault)
           state.vault = []
           Notification.toast('Keep Added!', 'success')
         } catch (error) {

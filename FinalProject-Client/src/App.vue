@@ -4,7 +4,7 @@
   </header>
   <main>
     <div class="row d-flex">
-      <div class="col-12 justify-cintent-center">
+      <div class="col-12 justify-content-center">
         <router-view />
       </div>
     </div>

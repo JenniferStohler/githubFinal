@@ -16,9 +16,9 @@ namespace FinalProject.Server.Repositories
     {
       string sql = @"
       INSERT INTO accounts
-        (name, picture, id, email)
+        (name, img, id, email)
         VALUES
-        (@Name, @Picture, @Id, @Email)";
+        (@Name, @Img, @Id, @Email)";
       _db.Execute(sql, newProfile);
       return newProfile;
     }

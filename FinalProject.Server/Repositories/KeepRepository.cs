@@ -19,9 +19,9 @@ namespace FinalProject.Server.Repositories
     {
       string sql = @"
       INSERT INTO keeps
-      (name, description, picture, creatorId)
+      (name, description, img, creatorId)
       VALUES
-      (@Name, @Description, @Picture, @CreatorId);
+      (@Name, @Description, @Img, @CreatorId);
       SELECT LAST_INSERT_ID();
       ";
       return _db.ExecuteScalar<int>(sql, KeepData);
@@ -94,7 +94,7 @@ namespace FinalProject.Server.Repositories
       SET
         name = @Name,
         description = @Description,
-        picture = @Picture
+        img = @Img
         WHERE id = @id
         ";
       _db.Execute(sql, k);

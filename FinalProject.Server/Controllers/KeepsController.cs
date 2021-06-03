@@ -43,7 +43,7 @@ namespace FinalProject.Server.Controllers
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
 
-        return Ok(_ks.GetById(id));
+        return Ok(_ks.Get(id));
       }
       catch (Exception e)
       {

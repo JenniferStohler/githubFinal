@@ -49,10 +49,10 @@
               >
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" title="Close Modal">
                 Close
               </button>
-              <button type="submit" class="btn btn-success">
+              <button type="submit" class="btn btn-success" title="Add New Keep">
                 Submit
               </button>
             </div>

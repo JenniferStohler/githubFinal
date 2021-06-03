@@ -35,8 +35,13 @@ namespace FinalProject.Server.Repositories
     internal Keep GetById(int id)
     {
       string sql = @"
-      SELECT FROM keeps WHERE id = @Id";
-      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
+      SELECT
+     k.*,
+     a.*
+     FROM keeps k
+     JOIN accounts a ON k.creatorId = a.id
+    WHERE k.id = @id;";
+      return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, new { id }, splitOn: "id").FirstOrDefault();
     }
 
     internal IEnumerable<Keep> GetAll()

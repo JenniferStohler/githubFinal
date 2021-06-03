@@ -4,15 +4,16 @@
 -- email VARCHAR(255) COMMENT 'email',
 -- picture VARCHAR(255) COMMENT 'Profile Picture'
 -- ) default charset utf8 COMMENT '';
--- CREATE TABLE IF NOT EXISTS vaults (
---   id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
---   CreatorId VARCHAR(255) NOT NULL COMMENT 'FK: Account',
---   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
---   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Last Updated',
---   name VARCHAR(255) COMMENT 'Name',
---   description VARCHAR(255) COMMENT 'Description',
---   FOREIGN KEY(CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
--- );
+CREATE TABLE IF NOT EXISTS vaults (
+  id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
+  CreatorId VARCHAR(255) NOT NULL COMMENT 'FK: Account',
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Last Updated',
+  name VARCHAR(255) COMMENT 'Name',
+  description VARCHAR(255) COMMENT 'Description',
+  isPrivate tinyint DEFAULT 0, 
+  FOREIGN KEY(CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
+);
 -- CREATE TABLE IF NOT EXISTS keeps (
 -- id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
 -- createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -42,4 +43,5 @@ CREATE TABLE IF NOT EXISTS vaultkeeps (
 -- ALTER TABLE keeps
 -- DROP FOREIGN KEY Vaults;
 
--- DROP TABLE keeps
+-- DROP TABLE vaultkeeps
+-- DROP TABLE vaults

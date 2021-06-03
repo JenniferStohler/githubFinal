@@ -54,16 +54,22 @@ namespace FinalProject.Server.Repositories
     internal Vault Create(Vault v)
     {
       string sql = @"
-        INSERT INTO
-        vaults(name, description, CreatorId)
+        INSERT INTO vaults
+        (name, description, isPrivate, creatorId)
         VALUES
-        name: @Name,
-        description: @Description,
-        creatorId: @CreatorId,
+        (@Name, @Description, @IsPrivate, @CreatorId);
         SELECT LAST_INSERT_ID();";
+      try
+      {
+        v.Id = _db.ExecuteScalar<int>(sql, v);
+        return v;
+      }
+      catch (System.Exception e)
+      {
 
-      v.Id = _db.ExecuteScalar<int>(sql, v);
-      return v; ;
+        System.Console.WriteLine(e.Message);
+        throw e;
+      }
     }
 
 

@@ -40,7 +40,7 @@ namespace FinalProject.Server.Services
     public IEnumerable<Keep> GetAll()
     {
       IEnumerable<Keep> keeps = _kp.GetAll();
-      return keeps.ToList().FindAll(k => k.Published);
+      return keeps.ToList();
     }
 
     public Keep Get(int id)
@@ -70,6 +70,7 @@ namespace FinalProject.Server.Services
 
     internal Keep GetById(int id)
     {
+
       return _kp.GetById(id);
     }
 

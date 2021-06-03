@@ -10,7 +10,7 @@
               {{ keep.createdAt }}
             </div>
             <div class="text-wrap">
-              {{ keep.body }}
+              {{ keeps }}
               <div class="mr-1 text-left">
                 <button type="btn btn-danger" @click="deleteKeep(keep.id)">
                   Delete
@@ -39,8 +39,8 @@ import { keepsService } from '../services/KeepsService'
 export default {
   name: 'Keep',
   props: {
-    keep: {
-      type: Array,
+    keepsProp: {
+      type: Object,
       required: true
     }
   },
@@ -49,7 +49,8 @@ export default {
 
       async deleteKeep() {
         try {
-          keepsService.deleteKeep(props.keep.id)
+          await keepsService.deleteKeep(props.keep.id)
+          await keepsService.getAll()
         } catch (error) {
           Notification.toast(error, 'error')
         }

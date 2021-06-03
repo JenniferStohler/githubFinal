@@ -3,7 +3,11 @@
     <Navbar />
   </header>
   <main>
-    <router-view />
+    <div class="row d-flex">
+      <div class="col-12 justify-cintent-center">
+        <router-view />
+      </div>
+    </div>
   </main>
   <footer>
     <div class="bg-dark text-light text-center p-4">

@@ -18,13 +18,9 @@ class KeepsService {
     const res = await api.get('api/keeps/' + id)
     AppState.activeKeep = res.data
   }
-  // async getActive(id) {
-  //   const res = await api.get('api/keeps/' + id)
-  //   AppState.activeKeep = res.data
-  // }
 
-  async createKeep(data) {
-    const res = await api.keep('api/keeps', data)
+  async createKeep(newKeep) {
+    const res = await api.keep('api/keeps', newKeep)
     router.push({ name: 'Keep', params: { id: res.data.id } })
     console.log(res.data.id)
   }

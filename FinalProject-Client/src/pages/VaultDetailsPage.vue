@@ -37,9 +37,9 @@ export default {
     return {
       state,
       route,
-      async addVault() {
+      async createVault() {
         try {
-          await vaultDetailsService.addVault(route.params.id, state.vault)
+          await vaultDetailsService.createVault(route.params.id, state.vault)
           state.vault = []
           Notification.toast('Keep Added!', 'success')
         } catch (error) {

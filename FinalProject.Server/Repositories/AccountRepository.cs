@@ -41,7 +41,7 @@ namespace FinalProject.Server.Repositories
         UPDATE accounts
         SET
         name = @Name,
-        picture= @Picture,
+        img= @Img,
         WHERE id = @Id;";
       _db.Execute(sql, update);
       return update;

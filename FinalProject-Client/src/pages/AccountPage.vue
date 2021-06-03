@@ -1,21 +1,37 @@
 <template>
-  <div class="row d-flex justify-content-center">
-    <img class="rounded" :src="account.picture" alt="" />
-    <div class="col">
-      <h1>Welcome {{ account.name }}</h1>
-      <p>{{ account.email }}</p>
-      <h1>
-        Vaults:
-      </h1>
-      <div class="row">
-        <h1>
-          Keeps:
-        </h1>
+  <div class="vaults container">
+    <div class="row">
+      <div class="col">
+        <h1>Vaults</h1>
+        <button title="Create New Vault"
+                type="button"
+                class="btn btn-dark"
+                data-toggle="modal"
+                data-target="#new-vault-form"
+                @click="createVault"
+        >
+          <i class="fas fa-plus">+</i>
+        </button>
       </div>
+      <!-- <Vault v-for="vault in state.vaults" :key="vault.id" :vault="vault" /> -->
     </div>
     <div class="row">
+      <div class="col">
+        <h1>Keeps</h1>
+        <button title="Create New Keep"
+                type="button"
+                class="btn btn-dark"
+                data-toggle="modal"
+                data-target="#new-keep-form"
+        >
+          <i class="fas fa-plus">+</i>
+        </button>
+      </div>
     </div>
   </div>
+  <!-- <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" /> -->
+  <CreateKeepModal />
+  <CreateVaultsModal />
 </template>
 
 <script>

@@ -10,14 +10,20 @@ namespace FinalProject.Server.Models
     public DateTime UpdatedAt { get; set; }
     [Required]
     public string CreatorId { get; set; }
-    // public string VaultId { get; set; }
+    [Required]
     public string Name { get; set; }
+    [Required]
     public string Description { get; set; }
-    public string Picture { get; set; }
+    [Required]
+    public string Img { get; set; }
+    [Required]
     public int Views { get; set; } = 0;
+    [Required]
     public int Shares { get; set; } = 0;
     public int Keeps { get; set; } = 0;
+    [Required]
     public Profile Creator { get; set; }
+    [Required]
     public bool Published { get; internal set; }
   }
 }

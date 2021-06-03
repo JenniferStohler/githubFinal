@@ -31,21 +31,5 @@ namespace FinalProject.Server.Repositories
     {
       throw new NotImplementedException();
     }
-
-    // internal string Get(string keeps)
-    // {
-    //   throw new NotImplementedException();
-    // }
-
-    // internal string GetByKeepsId(string keeps)
-    // {
-
-    // }
-
-
-    // internal Profile GetByProfileId(string id)
-    // {
-    //   throw new NotImplementedException();
-    // }
   }
 }

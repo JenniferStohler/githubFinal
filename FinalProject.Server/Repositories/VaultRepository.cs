@@ -44,8 +44,8 @@ namespace FinalProject.Server.Repositories
             UPDATE vaults 
             SET 
                 name = @Name,
-                description = @Description,
-            WHERE id = @Id;
+                description = @Description
+            WHERE id = @id;
             ";
       _db.Execute(sql, v);
       return v;

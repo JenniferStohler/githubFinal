@@ -52,7 +52,7 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal" title="Close Modal">
                 Close
               </button>
-              <button type="submit" class="btn btn-success" title="Add New Keep">
+              <button type="submit" class="btn btn-success" title="Add New Keep" @click="createKeep">
                 Submit
               </button>
             </div>

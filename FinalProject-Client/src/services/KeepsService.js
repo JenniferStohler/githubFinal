@@ -20,8 +20,8 @@ class KeepsService {
   }
 
   async createKeep(newKeep) {
-    const res = await api.keep('api/keeps', newKeep)
-    router.push({ name: 'Keep', params: { id: res.data.id } })
+    const res = await api.post('api/keeps', newKeep)
+    router.push({ name: 'Account', params: { id: res.data.id } })
     console.log(res.data.id)
   }
 

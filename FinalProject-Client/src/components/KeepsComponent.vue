@@ -39,7 +39,7 @@ import { keepsService } from '../services/KeepsService'
 export default {
   name: 'Keep',
   props: {
-    keepsProp: {
+    newKeep: {
       type: Object,
       required: true
     }

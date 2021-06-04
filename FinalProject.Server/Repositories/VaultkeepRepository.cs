@@ -20,13 +20,11 @@ namespace FinalProject.Server.Repositories
     {
       string sql = @"
       INSERT INTO
-      vaultkeeps(id, CreatorId, VaultId, KeepId)
+      vaultkeeps
+      (id, creatorId, vaultId, keepId)
       VALUES
-      id: @Id,
-      creatorId: @CreatorId,
-      vaultId: @VaultId,
-      keepId: KeepId,
-      SELECT LAST_INSERT_ID();";
+      (@Id, @CreatorId, @VaultId, @KeepId);
+     SELECT LAST_INSERT_ID();";
 
       vk.Id = _db.ExecuteScalar<int>(sql, vk);
       return vk;

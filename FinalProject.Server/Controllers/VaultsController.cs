@@ -33,7 +33,7 @@ namespace FinalProject.Server.Controllers
       }
     }
 
-    [HttpGet("{id}/vaults")]
+    [HttpGet("{id}")]
     public ActionResult<Vault> Get(int id)
     {
       try

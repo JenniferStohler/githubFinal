@@ -12,16 +12,16 @@ namespace FinalProject.Server.Controllers
   [ApiController]
   [Route("api/[controller]")]
 
-  public class VaultkeepController : ControllerBase
+  public class VaultKeepsController : ControllerBase
   {
     private readonly VaultkeepService _vks;
-    public VaultkeepController(VaultkeepService vks)
+    public VaultKeepsController(VaultkeepService vks)
     {
       vks = _vks;
 
     }
     [Authorize]
-    [HttpPost("{id}")]
+    [HttpPost]
     public async Task<ActionResult<Vaultkeep>> Create([FromBody] Vaultkeep vk)
     {
       try

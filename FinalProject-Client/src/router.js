@@ -28,6 +28,11 @@ const routes = [
     component: loadPage('ProfilePage')
   },
   {
+    path: '/KeepDetails',
+    name: 'KeepDetailsModal',
+    component: loadPage('KeepDetailsModal')
+  },
+  {
     path: '/vaults/:id',
     name: 'Vaults',
     component: loadPage('VaultDetailsPage')

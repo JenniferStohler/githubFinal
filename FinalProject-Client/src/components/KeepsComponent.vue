@@ -20,23 +20,27 @@
             <div class="keep m-2 bg-white w-75 shadow">
             </div>
 
-            <router-link :to="{name: 'KeepDetailsModal', params: {id: keepProp.id}}">
-              <!-- <router-link :to="{name: 'Profile', params: {id: keepProp.id}}"> -->
+            <!-- <router-link :to="{name: 'Profile', params: {id: keepProp.id}}"> -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="`#keepView` + keepProp.id">
               <img v-if="keepProp.img != null" :src="keepProp.img">
-              <!-- <img class="rounded-circle small-img position-absolute" :src="keepProp.creator.img" alt="Creator Photo"> -->
-              <div class="text-left">
-              </div>
-            </router-link>
+            </button>
+            <!-- <img class="rounded-circle small-img position-absolute" :src="keepProp.creator.img" alt="Creator Photo"> -->
+            <div class="text-left">
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <KeepDetailsModal :keep-prop="keepProp" />
   </div>
 </template>
 
 <script>
+
 import Notification from '../utils/Notification'
 import { keepsService } from '../services/KeepsService'
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'Keep',
   props: {
@@ -46,8 +50,12 @@ export default {
     }
   },
   setup(props) {
+    const state = reactive({
+      keeps: computed(() => AppState.keeps),
+      activeKeep: computed(() => AppState.activeKeep)
+    })
     return {
-
+      state,
       async deleteKeep() {
         try {
           await keepsService.deleteKeep(props.keep.id)

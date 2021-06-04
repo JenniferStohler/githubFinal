@@ -11,8 +11,8 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      vault: [],
-      project: computed(() => AppState.activeVault),
+      vaults: computed(() => AppState.vaults),
+      activeVault: computed(() => AppState.activeVault),
       user: computed(() => AppState.user),
       account: computed(() => AppState.account)
 

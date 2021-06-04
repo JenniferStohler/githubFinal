@@ -4,6 +4,7 @@
       <img class="rounded-circle" :src="state.keep.creator.img" alt="Creator image">
     </router-link>
     {{ state.keep.creator }}
+    <KeepsService />
   </div>
 </template>
 <script>
@@ -18,8 +19,8 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      keeps: [],
-      project: computed(() => AppState.activeKeep),
+      keeps: computed(() => AppState.keeps),
+      activeKeep: computed(() => AppState.activeKeep),
       user: computed(() => AppState.user),
       account: computed(() => AppState.account)
     })

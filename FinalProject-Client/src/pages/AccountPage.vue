@@ -28,10 +28,10 @@
         </button>
       </div>
     </div>
+    <!-- <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" /> -->
+    <CreateKeepModal />
+    <CreateVaultsModal />
   </div>
-  <!-- <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" /> -->
-  <CreateKeepModal />
-  <CreateVaultsModal />
 </template>
 
 <script>
@@ -41,6 +41,7 @@ export default {
   name: 'Account',
   setup() {
     return {
+      // keepProp: computed(() => AppState.keepProp),
       account: computed(() => AppState.account)
     }
   }

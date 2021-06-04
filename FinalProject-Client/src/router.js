@@ -27,11 +27,7 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage')
   },
-  {
-    path: '/KeepDetails',
-    name: 'KeepDetailsModal',
-    component: loadPage('KeepDetailsModal')
-  },
+
   {
     path: '/vaults/:id',
     name: 'Vaults',

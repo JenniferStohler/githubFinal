@@ -80,9 +80,9 @@ export default {
     return {
       state,
       route,
-      async Create() {
+      async createKeep() {
         try {
-          await keepsService.Create(state.newKeep)
+          await keepsService.createKeep(state.newKeep)
           state.newKeep = {}
           Notification.toast('Successfully Created a new Keep', 'success')
         } catch (error) {

@@ -5,8 +5,8 @@ import { api } from './AxiosService'
 class KeepsService {
   async getAll() {
     const res = await api.get('api/keeps')
-    AppState.keeps = res.data.keeps
-    console.log(res.data.keeps)
+    AppState.keeps = res.data
+    console.log(res.data)
   }
 
   async getByProfileId(id) {

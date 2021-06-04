@@ -5,12 +5,12 @@
       <div class="card d-flex flex-grow p-2">
         <div class="card-body d-flex flex-wrap flex-growth text-wrap justify-content-center p-4">
           <div class="text-wrap">
-            {{ keep.creator.name }}
+            <!-- {{ props.newKeep }} -->
             <div class="text-wrap">
-              {{ keep.createdAt }}
+              <!-- {{ keeps.createdAt }} -->
             </div>
             <div class="text-wrap">
-              {{ keeps }}
+              <!-- {{ keeps }} -->
               <div class="mr-1 text-left">
                 <button type="btn btn-danger" @click="deleteKeep(keep.id)">
                   Delete

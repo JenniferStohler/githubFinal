@@ -7,15 +7,15 @@ import { vaultsService } from '../services/VaultsService'
 import { AppState } from '../AppState'
 
 export default {
-  name: 'VaultsPage',
+  name: 'Vaults',
   setup() {
     const route = useRoute()
     const state = reactive({
       vault: [],
       project: computed(() => AppState.activeVault),
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account),
-      vaults: computed(() => AppState.vaults)
+      account: computed(() => AppState.account)
+
     })
 
     onMounted(async() => {
@@ -37,11 +37,11 @@ export default {
     return {
       state,
       route,
-      async createVault() {
+      async addVault() {
         try {
-          await vaultsService.createVault(route.params.id, state.vault)
+          await vaultsService.addVault(route.params.id, state.vault)
           state.vault = []
-          Notification.toast('Keep Added!', 'success')
+          Notification.toast('Vault Added!', 'success')
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

@@ -15,10 +15,10 @@ class VaultsService {
 
   async createVault(newVault) {
     const res = await api.post('vaults', newVault)
-    AppState.vaults.push(res.data)
-    router.push({ name: 'VaultDetails', params: { id: res.data.id } })
+    router.push({ name: 'Vaults', params: { id: res.data.id } })
+    console.log(res.data.id)
   }
-
+  // createVault function pushes to Axios instead of Vaults for some reason
   // async editVault(id) {
   //   const res = await api.put('vaults' + vault.id, vault)
   //   AppState

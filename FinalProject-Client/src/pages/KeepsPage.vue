@@ -1,4 +1,11 @@
-
+<template>
+  <div class="keeps-details container flex-grow text-wrap" v-if="state.keep">
+    <router-link :to="{name:'Profile', params: {id: state.keep.creator.id}}">
+      <img class="rounded-circle" :src="state.keep.creator.img" alt="Creator image">
+    </router-link>
+    {{ state.keep.creator }}
+  </div>
+</template>
 <script>
 
 import { computed, onMounted, reactive } from 'vue'
@@ -11,11 +18,10 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      keep: [],
+      keeps: [],
       project: computed(() => AppState.activeKeep),
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account),
-      keeps: computed(() => AppState.keeps)
+      account: computed(() => AppState.account)
     })
 
     onMounted(async() => {
@@ -47,7 +53,8 @@ export default {
         }
       }
     }
-  }
+  },
+  components: {}
 }
 
 </script>

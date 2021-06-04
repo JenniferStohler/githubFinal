@@ -2,8 +2,9 @@
   <div class="row d-flex justify-content-center">
     <div class="card-columns m-5">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1490709501740-c7ac36b7d587?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" class="card-img-top" alt="...">
         <div class="card-body">
+          <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" />
+          {{ state.keeps }}
           <h5 class="card-title">
             Card title that wraps to a new line
           </h5>
@@ -87,7 +88,6 @@
       </div>
     </div>
   </div>
-  <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" />
 </template>
 
 <script>

@@ -27,7 +27,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-success">
+          <button type="submit" class="btn btn-success" @click="createVault">
             Submit
           </button>
         </div>
@@ -49,6 +49,7 @@ export default {
       async createVault() {
         try {
           await vaultsService.createVault(state.newVault)
+          // For some reason, it skips over state.newVault and throws an error.
           state.newVault = {}
           $('#new-vault-form').modal('hide')
         } catch (error) {

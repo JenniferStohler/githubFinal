@@ -10,6 +10,7 @@
         <div class="modal-body">
           {{ keepProp.creator.name }}
           {{ keepProp.description }}
+          {{ keepProp.id }}
           <img :src="keepProp.img" class="img-fluid">
         </div>
         <div class="modal-footer">

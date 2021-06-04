@@ -41,6 +41,7 @@ import Notification from '../utils/Notification'
 import { keepsService } from '../services/KeepsService'
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
 export default {
   name: 'Keep',
   props: {
@@ -56,12 +57,25 @@ export default {
     })
     return {
       state,
-      async deleteKeep() {
+      async deleteKeep(id) {
         try {
-          await keepsService.deleteKeep(props.keep.id)
-          await keepsService.getAll()
+          if (await Notification.confirmAction('Are You Sure You Want to Delete This?')) {
+            await keepsService.deleteKeep(id)
+            await keepsService.getAll()
+            Notification.toast('Keep Deleted', 'success')
+          }
         } catch (error) {
           Notification.toast(error, 'error')
+        }
+      },
+      async createKeep() {
+        try {
+          await keepsService.createKeep(state.newKeep)
+          state.newKeep = {}
+          Notification.toast('Successfully Created a new Keep', 'success')
+        } catch (error) {
+          logger.log(error)
+          Notification.toast('Error:' + error, 'error')
         }
       }
     }

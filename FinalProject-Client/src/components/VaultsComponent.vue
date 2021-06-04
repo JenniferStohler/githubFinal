@@ -1,24 +1,26 @@
 <template>
   <div class="row container-fluid d-flex flex-wrap flex-growth justify-center">
     <div class="vaults col-12">
-      <div class="card shadow p-3">
-        <div class="card-body d-flex text-wrap justify-content-center p-4">
-          <div class="text-wrap">
+      <router-link :to="{name: 'Vaults', params: {id: vaultProp.id}}">
+        <div class="card shadow p-3">
+          <div class="card-body d-flex text-wrap justify-content-center p-4">
             <div class="text-wrap">
-            </div>
-            <div class="text-wrap">
-              <!-- {{ keeps }} -->
-              <div class="mr-1 text-left">
-                <button type="btn btn-danger" @click="deleteVault(vaultProp.id)">
-                  Delete
-                </button>
+              <div class="text-wrap">
               </div>
-            </div>
-            <div class="keep m-2 bg-white w-75 shadow">
+              <div class="text-wrap">
+                <!-- {{ keeps }} -->
+                <div class="mr-1 text-left">
+                  <button type="btn btn-danger" @click="deleteVault(vaultProp.id)">
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="keep m-2 bg-white w-75 shadow">
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

@@ -48,7 +48,6 @@ export default {
       state,
       async createVault() {
         try {
-          debugger
           await vaultsService.createVault(state.newVault)
           // For some reason, it skips over state.newVault and throws an error.
           state.newVault = {}

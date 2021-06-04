@@ -31,6 +31,10 @@
     <!-- <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" /> -->
     <CreateKeepModal />
     <CreateVaultsModal />
+    <!-- <KeepsComponent v-for="keepProp in state.keeps"
+                    :key="keepProp.id"
+                    :keep-prop="keepProp"
+    /> -->
   </div>
 </template>
 

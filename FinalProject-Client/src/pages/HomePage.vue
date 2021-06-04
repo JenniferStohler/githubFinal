@@ -1,10 +1,9 @@
 <template>
   <div class="row d-flex justify-content-center">
     <div class="card-columns m-5">
-      <div class="card">
+      <Keep v-for="keep in state.keeps" :key="keep.id" :keep-prop="keep" />
+      <!-- <div class="card">
         <div class="card-body">
-          <Keep v-for="keep in state.keeps" :key="keep.id" :keep="keep" />
-          {{ state.keeps }}
           <h5 class="card-title">
             Card title that wraps to a new line
           </h5>
@@ -86,6 +85,7 @@
           </p>
         </div>
       </div>
+    </div> -->
     </div>
   </div>
 </template>

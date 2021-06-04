@@ -20,9 +20,9 @@
             <div class="keep m-2 bg-white w-75 shadow">
             </div>
 
-            <router-link :to="{name: 'Profile', params: {id: keep.creator.id}}">
-              <img v-if="keep.imgUrl != null" :src="keep.imgUrl">
-              <img class="rounded-circle small-img position-absolute" :src="keep.creator.picture" alt="Creator Photo">
+            <router-link :to="{name: 'Profile', params: {id: keepProp.id}}">
+              <img v-if="keepProp.img != null" :src="keepProp.img">
+              <!-- <img class="rounded-circle small-img position-absolute" :src="keepProp.creator.img" alt="Creator Photo"> -->
               <div class="text-left">
               </div>
             </router-link>
@@ -39,7 +39,7 @@ import { keepsService } from '../services/KeepsService'
 export default {
   name: 'Keep',
   props: {
-    newKeep: {
+    keepProp: {
       type: Object,
       required: true
     }

@@ -72,7 +72,6 @@ namespace FinalProject.Server.Repositories
       }
     }
 
-
     internal List<Vault> GetAll()
     {
       string sql = @"

@@ -54,20 +54,20 @@ namespace FinalProject.Server.Repositories
      JOIN accounts a ON k.creatorId = a.id;";
       return _db.Query<Keep, Profile, Keep>(sql, (k, a) => { k.Creator = a; return k; }, splitOn: "id");
     }
-    internal List<Keep> GetKeepsByVaultId(int id)
+    internal List<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
     {
       string sql = @"
       SELECT
       k.*,
-      v.*
-      FROM keeps k
-      JOIN vaults v ON k.creatorId = v.id ";
-      return _db.Query<Keep, Profile, Keep>(sql,
-      (k, v) =>
-      {
-        k.Creator = v;
-        return k;
-      }, splitOn: "id").ToList();
+     vk.id as vaultKeepId,
+     a.*
+     FROM 
+     vaultkeeps vk
+     JOIN keeps k ON k.id = vk.keepId
+     JOIN accounts a ON k.creatorId = a.id
+     WHERE
+     vk.vaultId = @vaultId; ";
+      return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (k, a) => { k.Creator = a; return k; }, new { vaultId }).ToList();
 
     }
     internal IEnumerable<Keep> GetByCreatorId(string id)

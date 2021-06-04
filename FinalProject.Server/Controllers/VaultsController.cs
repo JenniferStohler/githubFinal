@@ -47,11 +47,11 @@ namespace FinalProject.Server.Controllers
       }
     }
     [HttpGet("{id}/keeps")]
-    public ActionResult<List<Keep>> GetKeepsByVaultId(int id)
+    public ActionResult<List<VaultKeepViewModel>> GetKeepsByVaultId(int id)
     {
       try
       {
-        List<Keep> keeps = _vs.GetKeepsByVaultId(id);
+        List<VaultKeepViewModel> keeps = _vs.GetKeepsByVaultId(id);
         return Ok(keeps);
       }
       catch (Exception e)

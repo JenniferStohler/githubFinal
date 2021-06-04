@@ -39,18 +39,19 @@ namespace FinalProject.Server.Controllers
 
     }
     // [Authorize]
-    [HttpGet]
-    public ActionResult<List<Vaultkeep>> GetAll(int id)
+    [HttpGet("{id}")]
+    public ActionResult<List<Vaultkeep>> GetById(int id)
     {
       try
       {
-        return Ok(_vks.GetAll(id));
+        return Ok(_vks.GetById(id));
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
+
 
     [Authorize]
     [HttpDelete("{id}")]

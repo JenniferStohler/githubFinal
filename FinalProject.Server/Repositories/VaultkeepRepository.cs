@@ -36,21 +36,21 @@ namespace FinalProject.Server.Repositories
       _db.Execute(sql, new { id });
     }
 
-    internal List<Vaultkeep> GetAll(int id)
-    {
-      string sql = @"
-      SELECT
-      vk.*,
-      a.*
-      FROM vaultkeeps vk
-      JOIN accounts a ON vk.creatorId = a.id;";
-      return _db.Query<Vaultkeep, Profile, Vaultkeep>(sql,
-      (vk, a) =>
-      {
-        vk.Creator = a;
-        return vk;
-      }, splitOn: "id").ToList();
-    }
+    // internal List<Vaultkeep> GetAll(int id)
+    // {
+    //   string sql = @"
+    //   SELECT
+    //   vk.*,
+    //   a.*
+    //   FROM vaultkeeps vk
+    //   JOIN accounts a ON vk.creatorId = a.id;";
+    //   return _db.Query<Vaultkeep, Profile, Vaultkeep>(sql,
+    //   (vk, a) =>
+    //   {
+    //     vk.Creator = a;
+    //     return vk;
+    //   }, splitOn: "id").ToList();
+    // }
 
     internal Vaultkeep GetById(int id)
     {
@@ -65,7 +65,24 @@ namespace FinalProject.Server.Repositories
       {
         vk.Creator = a;
         return vk;
-      }, new { id }).FirstOrDefault();
+      }, new { id }, splitOn: "id").FirstOrDefault();
+    }
+
+    internal List<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
+    {
+      string sql = @"
+      SELECT
+      k.*,
+     vk.id as vaultKeepId,
+     a.*
+     FROM 
+     vaultkeeps vk
+     JOIN keeps k ON k.id = vk.keepId
+     JOIN accounts a ON k.creatorId = a.id
+     WHERE
+     vk.vaultId = @vaultId; ";
+      return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (k, a) => { k.Creator = a; return k; }, new { vaultId }).ToList();
+
     }
   }
 }

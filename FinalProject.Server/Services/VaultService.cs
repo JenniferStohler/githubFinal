@@ -7,11 +7,11 @@ public class VaultService
 {
 
   private readonly VaultRepository _vp;
-  private readonly KeepRepository _kp;
-  public VaultService(VaultRepository vp, KeepRepository kp)
+  private readonly VaultkeepRepository _vkp;
+  public VaultService(VaultRepository vp, VaultkeepRepository vkp)
   {
     _vp = vp;
-    _kp = kp;
+    _vkp = vkp;
   }
   internal List<Vault> GetAll()
   {
@@ -60,9 +60,9 @@ public class VaultService
   }
 
 
-  internal List<Keep> GetKeepsByVaultId(int vaultId)
+  public List<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
   {
-    return _kp.GetKeepsByVaultId(vaultId);
+    return _vkp.GetKeepsByVaultId(vaultId);
   }
 }
 //Get ProfilesVaults

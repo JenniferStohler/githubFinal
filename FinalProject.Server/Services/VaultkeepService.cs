@@ -27,12 +27,12 @@ namespace FinalProject.Server.Services
     // {
     //   return _vkp.Remove();
     // }
-    public List<Vaultkeep> GetAll(int id)
-    {
-      return _vkp.GetAll(id);
-    }
+    // public List<Vaultkeep> GetAll(int id)
+    // {
+    //   return _vkp.GetAll(id);
+    // }
 
-    private Vaultkeep GetById(int id)
+    public Vaultkeep GetById(int id)
     {
       return _vkp.GetById(id);
     }

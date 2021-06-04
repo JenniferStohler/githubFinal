@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS vaultkeeps (
 -- DROP TABLE vaults
 
 
- INSERT INTO
-      vaultkeeps(id, creatorId, vaultId, keepId)
-      VALUES(@Id, @CreatorId, @VaultId, @KeepId);
-     SELECT LAST_INSERT_ID();
+--  INSERT INTO
+--       vaultkeeps(id, creatorId, vaultId, keepId)
+--       VALUES(@Id, @CreatorId, @VaultId, @KeepId);
+--      SELECT LAST_INSERT_ID();

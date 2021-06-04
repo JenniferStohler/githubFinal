@@ -26,4 +26,8 @@ namespace FinalProject.Server.Models
 
     public bool Published { get; internal set; }
   }
+  public class VaultKeepViewModel
+  {
+    public int vaultKeepId { get; set; }
+  }
 }

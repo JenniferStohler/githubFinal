@@ -17,11 +17,11 @@ namespace FinalProject.Server.Controllers
     private readonly VaultkeepService _vks;
     public VaultKeepsController(VaultkeepService vks)
     {
-      vks = _vks;
+      _vks = vks;
 
     }
-    [Authorize]
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Vaultkeep>> Create([FromBody] Vaultkeep vk)
     {
       try

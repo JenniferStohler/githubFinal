@@ -2,6 +2,7 @@
   <div class="row container-fluid d-flex flex-wrap flex-growth justify-center">
     <div class="keeps col-12">
       <div class="card shadow p-3">
+        <i class="far fa-eye">Views:</i>
         <div class="card-body d-flex text-wrap justify-content-center p-4">
           <div class="text-wrap">
             {{ keepProp.creator.name }}

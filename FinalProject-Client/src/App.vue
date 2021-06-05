@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-dark">
     <div class="row d-flex">
       <div class="col-12 justify-content-center">
         <router-view />

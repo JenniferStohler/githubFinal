@@ -78,7 +78,7 @@ namespace FinalProject.Server.Services
     {
       return _kp.GetKeepsByVaultId(id).ToList().FindAll(k => k.Published);
     }
-    internal IEnumerable<Keep> GetByProfileId(string id)
+    internal IEnumerable<Keep> GetKeepsByProfileId(string id)
     {
       return _kp.GetByCreatorId(id).ToList().FindAll(k => k.Published);
     }

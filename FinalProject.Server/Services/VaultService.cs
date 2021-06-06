@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FinalProject.Server.Models;
 using FinalProject.Server.Repositories;
 
@@ -8,10 +9,13 @@ public class VaultService
 
   private readonly VaultRepository _vp;
   private readonly VaultkeepRepository _vkp;
-  public VaultService(VaultRepository vp, VaultkeepRepository vkp)
+  private readonly KeepRepository _kp;
+
+  public VaultService(VaultRepository vp, VaultkeepRepository vkp, KeepRepository kp)
   {
     _vp = vp;
     _vkp = vkp;
+    _kp = kp;
   }
   internal List<Vault> GetAll()
   {
@@ -57,6 +61,12 @@ public class VaultService
       throw new Exception("You do not have permission to delete this");
     }
     _vp.Remove(id);
+  }
+
+  public List<Vault> GetVaultsByProfileId(string id)
+  {
+    List<Vault> vaults = _vp.GetVaultsByProfileId(id);
+    return vaults.ToList().FindAll(vaults => vaults.IsPrivate == false);
   }
 
 

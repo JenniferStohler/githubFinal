@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using FinalProject.Server.Models;
@@ -27,9 +28,6 @@ namespace FinalProject.Server.Repositories
       string sql = "SELECT * FROM accounts WHERE id = @id";
       return _db.QueryFirstOrDefault<Profile>(sql, new { id });
     }
-    internal Profile GetVaultsById(string id)
-    {
-      throw new NotImplementedException();
-    }
+
   }
 }

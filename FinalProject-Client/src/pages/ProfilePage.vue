@@ -2,8 +2,13 @@
 <template>
   <div class="vaults container">
     <div class="row">
+      <div class="col-4">
+        {{ state.activeProfile.name }}
+        {{ state.keeps.keeps }}
+      </div>
       <div class="col">
-        <h1>Vaults</h1>
+        <h1>Vaults:</h1>
+        <span>{{ state.userVaults.length }}</span>
         <button title="Create New Vault"
                 type="button"
                 class="btn btn-dark"
@@ -21,7 +26,8 @@
     </div>
     <div class="row">
       <div class="col">
-        <h1>Keeps</h1>
+        <h1>Keeps:</h1>
+        <span>{{ state.userKeeps.length }}</span>
         <button title="Create New Keep"
                 type="button"
                 class="btn btn-dark"
@@ -31,6 +37,7 @@
           <i class="fas fa-plus text-success" aria-hidden="true" v-if="state.activeProfile.id == state.account.id"></i>
         </button>
       </div>
+
       <div class="row">
         <div class="col">
           <div class="card-columns">
@@ -53,7 +60,7 @@ import Notification from '../utils/Notification'
 import { useRoute } from 'vue-router'
 
 export default {
-  name: 'Account',
+  name: 'Profile',
   setup() {
     const route = useRoute()
     const state = reactive({
